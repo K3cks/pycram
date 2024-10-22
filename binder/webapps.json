@@ -6,5 +6,13 @@
     "url": "proxy/8001/rvizweb/webapps/rvizweb/build/www/index.html",
     "start": true,
     "mode": "split-right"
+  },
+  {
+    "name": "Terminal",
+    "title": "Terminal",
+    "icon": "proxy/8001/rvizweb/webapps/r.svg",
+    "url": "proxy/8001/rvizweb/webapps/rvizweb/build/www/index.html",
+    "start": true,
+    "mode": "split-left"
   }
 ]
