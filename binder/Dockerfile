@@ -62,6 +62,24 @@ RUN git clone https://github.com/code-iai/iai_tiago.git
 WORKDIR  ${PYCRAM_WS}/src/iai_tiago/
 RUN git submodule update --init
 
+# Knowrob: install MongoDB
+USER root
+RUN sudo apt-get install gnupg curl -y
+RUN curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | \
+   sudo gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg \
+   --dearmor
+RUN echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/8.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
+RUN sudo apt-get update
+RUN sudo apt-get install -y mongodb-org=8.0.0 mongodb-org-database=8.0.0 mongodb-org-server=8.0.0 mongodb-mongosh mongodb-org-mongos=8.0.0 mongodb-org-tools=8.0.0 -y
+
+# Knowrob: install SWI prolog
+USER root
+RUN sudo apt-get install software-properties-common -y
+RUN sudo apt-add-repository ppa:swi-prolog/stable -y
+RUN sudo apt-get update
+RUN sudo apt-get install swi-prolog -y
+
+
 # Build pycram workspace
 WORKDIR  ${PYCRAM_WS}
 USER root
