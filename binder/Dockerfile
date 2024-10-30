@@ -13,7 +13,8 @@ COPY --chown=${NB_USER}:users binder/me ${PYCRAM_WS}/src/me
 
 USER root
 RUN apt-get update
-RUN apt install ros-noetic-pr2-arm-kinematics
+RUN apt install -y ros-noetic-pr2-arm-kinematics
+
 
 # Build pycram workspace
 WORKDIR  ${PYCRAM_WS}
