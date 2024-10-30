@@ -190,7 +190,10 @@ class DefaultClose(ProcessModule):
     def _execute(self, desig: ClosingMotion):
         part_of_object = desig.object_part.world_object
 
-        container_joint = part_of_object.find_joint_above_link(desig.object_part.name, JointType.PRISMATIC)
+        if desig.object_part.name == "handle_cab3_door_top":
+            container_joint = part_of_object.find_joint_above_link(desig.object_part.name, JointType.REVOLUTE)
+        else:
+            container_joint = part_of_object.find_joint_above_link(desig.object_part.name, JointType.PRISMATIC)
 
         goal_pose = link_pose_for_joint_config(part_of_object, {
             container_joint: part_of_object.get_joint_limits(container_joint)[0]}, desig.object_part.name)
