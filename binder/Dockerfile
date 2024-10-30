@@ -45,6 +45,7 @@ RUN sudo apt-get install -y swi-prolog -y
 RUN export SWI_HOME_DIR=/usr/lib/swi-prolog
 RUN sudo apt-get install -y ros-noetic-roscpp
 RUN sudo apt-get install -y libmongoc-1.0
+RUN sudo apt-get update
 
 WORKDIR ${PYCRAM_WS}/src/
 RUN git clone --branch master https://github.com/code-iai/iai_common_msgs.git 
