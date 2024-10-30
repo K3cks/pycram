@@ -44,12 +44,9 @@ RUN sudo apt-get install swi-prolog -y
 
 WORKDIR ${PYCRAM_WS}/src/
 RUN git clone --branch fallschool https://github.com/SUTURO/suturo_knowledge.git
-RUN vcs import --input suturo_knowledge/workspace.rosinstall --recursive
+RUN git clone --branch fallschool https://github.com/SUTURO/knowrob.git
+
 RUN git clone --branch soma-cram https://github.com/hawkina/soma.git
-WORKDIR ${PYCRAM_WS}/src/knowrob
-RUN git checkout fallschool
-WORKDIR ${PYCRAM_WS}/src/suturo_knowledge
-RUN git checkout fallschool
 RUN pip install rdflib
 
 
