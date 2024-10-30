@@ -50,7 +50,6 @@ WORKDIR ${PYCRAM_WS}/src/knowrob
 RUN git checkout fallschool
 WORKDIR ${PYCRAM_WS}/src/suturo_knowledge
 RUN git checkout fallschool
-RUN git clone --branch robocup https://github.com/SUTURO/suturo_resources.git
 RUN pip install rdflib
 
 
