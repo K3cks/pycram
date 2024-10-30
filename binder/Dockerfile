@@ -21,6 +21,8 @@ RUN rosdep update \
   && rosdep install -y --ignore-src --from-paths ./ -r \
   && rosdep fix-permissions
 USER ${NB_USER}
+RUN apt-get install python3-catkin-tools
+RUN apt install ros-noetic-pr2-arm-kinematics
 RUN catkin build
 
 RUN pip install service_identity
