@@ -43,6 +43,7 @@ RUN sudo apt-add-repository ppa:swi-prolog/stable -y
 RUN sudo apt-get update
 RUN sudo apt-get install swi-prolog -y
 RUN export SWI_HOME_DIR=/usr/lib/swi-prolog
+RUN sudo apt-get install ros-noetic-roscpp
 
 WORKDIR ${PYCRAM_WS}/src/
 RUN git clone --branch master https://github.com/code-iai/iai_common_msgs.git 
@@ -56,7 +57,7 @@ RUN pip install rdflib
 
 RUN pip install service_identity
 RUN pip install netifaces
-RUN catkin build
+RUN catkin build --verbose --no-status
 # Jupyter Config
 COPY --chown=${NB_USER}:users binder/jupyter-config.json /opt/conda/share/jupyter/lab/settings/overrides.json
 
