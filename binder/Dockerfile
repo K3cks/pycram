@@ -48,7 +48,7 @@ RUN git clone --branch master https://github.com/code-iai/iai_common_msgs.git
 RUN git clone --branch noetic https://github.com/knowrob/rosprolog.git
 RUN git clone --branch fallschool https://github.com/SUTURO/suturo_knowledge.git
 RUN git clone --branch fallschool https://github.com/SUTURO/knowrob.git
-RUN git clone --branch tede-simulateable-semantic-map https://github.com/SUTURO/suturo_resources.git
+RUN git clone --branch fallschool https://github.com/SUTURO/suturo_resources.git
 RUN git clone --branch soma-cram https://github.com/hawkina/soma.git
 RUN pip install rdflib
 
