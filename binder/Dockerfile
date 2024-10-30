@@ -13,9 +13,6 @@ COPY --chown=${NB_USER}:users binder/me ${PYCRAM_WS}/src/me
 
 USER root
 RUN apt-get update
-# New geometry msgs
-WORKDIR ${PYCRAM_WS}/src/
-RUN git clone https://github.com/sunava/geometry2.git
 
 # Build pycram workspace
 WORKDIR  ${PYCRAM_WS}
@@ -38,8 +35,3 @@ COPY --chown=${NB_USER}:users binder/entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["jupyter", "lab", "--allow-root", "--NotebookApp.token=''", "--no-browser", "--ip=0.0.0.0"]
 RUN pip install https://raw.githubusercontent.com/yxzhan/jupyterlab-rviz/master/dist/jupyterlab_rviz-0.3.1.tar.gz
-RUN mkdir -p /home/${NB_USER}/.ipython/profile_default/startup/
-
-RUN curl https://raw.githubusercontent.com/sunava/pycram/binder-all-robots/binder/01-import.py -o /home/${NB_USER}/.ipython/profile_default/startup/01-import.py
-# RUN curl https://raw.githubusercontent.com/LucaKro/pycram/luca_master_thesis/binder/01-import.py -o /home/${NB_USER}/.ipython/profile_default/startup/01-import.py
-
