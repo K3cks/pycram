@@ -13,39 +13,6 @@ COPY --chown=${NB_USER}:users binder/me ${PYCRAM_WS}/src/me
 
 USER root
 RUN apt-get update
-
-
-# Knowrob: install MongoDB
-USER root
-RUN sudo apt-get install gnupg curl -y
-RUN curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | \
-   sudo gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg \
-   --dearmor
-RUN echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/8.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
-RUN sudo apt-get update
-RUN sudo apt-get install -y mongodb-org=8.0.0 mongodb-org-database=8.0.0 mongodb-org-server=8.0.0 mongodb-mongosh mongodb-org-mongos=8.0.0 mongodb-org-tools=8.0.0 -y
-
-# Knowrob: install SWI prolog
-USER root
-RUN sudo apt-get install software-properties-common -y
-RUN sudo apt-add-repository ppa:swi-prolog/stable -y
-RUN sudo apt-get update
-RUN sudo apt-get install swi-prolog -y
-
-# Knowrob: install knowrob and dependencies
-# TODO: Set working directory
-USER ${NB_USER}
-WORKDIR ${PYCRAM_WS}/src/
-RUN git clone --branch fallschool https://github.com/SUTURO/suturo_knowledge.git
-RUN vcs import --input suturo_knowledge/workspace.rosinstall --recursive
-RUN git clone --branch soma-cram https://github.com/hawkina/soma.git
-WORKDIR ${PYCRAM_WS}/src/knowrob
-RUN git checkout fallschool
-WORKDIR ${PYCRAM_WS}/src/suturo_knowledge
-RUN git checkout fallschool
-RUN git clone --branch robocup https://github.com/SUTURO/suturo_resources.git
-RUN pip install rdflib
-
 # New geometry msgs
 WORKDIR ${PYCRAM_WS}/src/
 RUN git clone https://github.com/sunava/geometry2.git
