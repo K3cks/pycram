@@ -69,7 +69,7 @@ RUN rosdep update \
   && rosdep install -y --ignore-src --from-paths ./ -r \
   && rosdep fix-permissions
 USER ${NB_USER}
-RUN catkin build
+RUN catkin build -j1
 
 RUN pip install service_identity
 RUN pip install netifaces
