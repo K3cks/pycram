@@ -14,53 +14,41 @@ COPY --chown=${NB_USER}:users binder/me ${PYCRAM_WS}/src/me
 USER root
 RUN apt-get update
 
-# Giskard
-USER ${NB_USER}
-COPY --chown=${NB_USER}:users binder/giskard.rosinstall /home/${NB_USER}/giskard.rosinstall
-RUN vcs import --input /home/${NB_USER}/giskard.rosinstall --recursive
 
-# Giskard: requirements + missing packages
-RUN pip install --requirement ${PYCRAM_WS}/src/giskardpy/requirements.txt
-RUN pip install termcolor pydot
-
-# Giskard: Pybind + betterpybullet
-WORKDIR /home/${NB_USER} 
-RUN git clone https://github.com/pybind/pybind11.git \
-  && cd pybind11 \
-  && mkdir build \
-  && cd build \
-  && cmake .. -DCMAKE_BUILD_TYPE=Release -DPYBIND11_PYTHON_VERSION=3 -DPYBIND11_TEST=OFF
+# Knowrob: install MongoDB
 USER root
-RUN cd pybind11/build && make install
+RUN sudo apt-get install gnupg curl -y
+RUN curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | \
+   sudo gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg \
+   --dearmor
+RUN echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/8.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
+RUN sudo apt-get update
+RUN sudo apt-get install -y mongodb-org=8.0.0 mongodb-org-database=8.0.0 mongodb-org-server=8.0.0 mongodb-mongosh mongodb-org-mongos=8.0.0 mongodb-org-tools=8.0.0 -y
+
+# Knowrob: install SWI prolog
+USER root
+RUN sudo apt-get install software-properties-common -y
+RUN sudo apt-add-repository ppa:swi-prolog/stable -y
+RUN sudo apt-get update
+RUN sudo apt-get install swi-prolog -y
+
+# Knowrob: install knowrob and dependencies
+# TODO: Set working directory
 USER ${NB_USER}
-
-RUN git clone https://github.com/SemRoCo/bullet3.git
-COPY --chown=${NB_USER}:users binder/build_cmake_pybullet_3.10_double.sh /home/${NB_USER}/bullet3/
-RUN cd bullet3 && ./build_cmake_pybullet_3.10_double.sh
-ENV PYTHONPATH=${PYTHONPATH}:/home/${NB_USER}/bullet3/build_cmake/better_python:/home/${NB_USER}/bullet3/examples/pybullet
-
+WORKDIR ${PYCRAM_WS}/src/
+RUN git clone --branch fallschool https://github.com/SUTURO/suturo_knowledge.git
+RUN vcs import --input suturo_knowledge/workspace.rosinstall --recursive
+RUN git clone --branch soma-cram https://github.com/hawkina/soma.git
+WORKDIR ${PYCRAM_WS}/src/knowrob
+RUN git checkout fallschool
+WORKDIR ${PYCRAM_WS}/src/suturo_knowledge
+RUN git checkout fallschool
+RUN git clone --branch robocup https://github.com/SUTURO/suturo_resources.git
+RUN pip install rdflib
 
 # New geometry msgs
 WORKDIR ${PYCRAM_WS}/src/
 RUN git clone https://github.com/sunava/geometry2.git
-
-
-# HSR resources
-WORKDIR ${PYCRAM_WS}/src/
-RUN git clone https://github.com/code-iai/iai_hsr.git
-WORKDIR  ${PYCRAM_WS}/src/iai_hsr/
-RUN git submodule update --init
-
-# Stretch resources
-WORKDIR ${PYCRAM_WS}/src/
-RUN git clone https://github.com/hello-robot/stretch_ros.git
-RUN git clone https://github.com/issaiass/realsense2_description.git
-
-# Tiago resources
-WORKDIR ${PYCRAM_WS}/src/
-RUN git clone https://github.com/code-iai/iai_tiago.git
-WORKDIR  ${PYCRAM_WS}/src/iai_tiago/
-RUN git submodule update --init
 
 # Build pycram workspace
 WORKDIR  ${PYCRAM_WS}
