@@ -57,6 +57,7 @@ RUN git clone --branch fallschool https://github.com/SUTURO/suturo_knowledge.git
 RUN git clone --branch fallschool https://github.com/SUTURO/knowrob.git
 RUN git clone --branch fallschool https://github.com/SUTURO/suturo_resources.git
 RUN git clone --branch soma-cram https://github.com/hawkina/soma.git
+RUN git clone --branch main https://github.com/sasjonge/knowrob_designator.git 
 RUN pip install rdflib
 
 
