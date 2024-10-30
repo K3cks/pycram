@@ -13,6 +13,7 @@ COPY --chown=${NB_USER}:users binder/me ${PYCRAM_WS}/src/me
 
 USER root
 RUN apt-get update
+RUN apt install ros-noetic-pr2-arm-kinematics
 
 # Build pycram workspace
 WORKDIR  ${PYCRAM_WS}
@@ -21,7 +22,6 @@ RUN rosdep update \
   && rosdep install -y --ignore-src --from-paths ./ -r \
   && rosdep fix-permissions
 USER ${NB_USER}
-RUN apt install ros-noetic-pr2-arm-kinematics
 RUN catkin build
 
 RUN pip install service_identity
