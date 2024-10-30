@@ -42,19 +42,6 @@ RUN sudo apt-add-repository ppa:swi-prolog/stable -y
 RUN sudo apt-get update
 RUN sudo apt-get install swi-prolog -y
 
-# Knowrob: install knowrob and dependencies
-# TODO: Set working directory
-USER ${NB_USER}
-WORKDIR ${PYCRAM_WS}/src/
-RUN git clone --branch fallschool https://github.com/SUTURO/suturo_knowledge.git
-RUN vcs import --input suturo_knowledge/workspace.rosinstall --recursive
-RUN git clone --branch soma-cram https://github.com/hawkina/soma.git
-WORKDIR ${PYCRAM_WS}/src/knowrob
-RUN git checkout fallschool
-WORKDIR ${PYCRAM_WS}/src/suturo_knowledge
-RUN git checkout fallschool
-RUN git clone --branch robocup https://github.com/SUTURO/suturo_resources.git
-RUN pip install rdflib
 
 RUN pip install service_identity
 RUN pip install netifaces
