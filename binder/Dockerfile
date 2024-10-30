@@ -44,6 +44,7 @@ RUN sudo apt-get install swi-prolog -y
 RUN export SWI_HOME_DIR=/usr/lib/swi-prolog
 
 WORKDIR ${PYCRAM_WS}/src/
+RUN git clone --branch noetic https://github.com:knowrob/rosprolog.git
 RUN git clone --branch fallschool https://github.com/SUTURO/suturo_knowledge.git
 RUN git clone --branch fallschool https://github.com/SUTURO/knowrob.git
 RUN git clone --branch tede-simulateable-semantic-map https://github.com/SUTURO/suturo_resources.git
