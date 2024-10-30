@@ -41,7 +41,7 @@ RUN sudo apt-get install software-properties-common -y
 RUN sudo apt-add-repository ppa:swi-prolog/stable -y
 RUN sudo apt-get update
 RUN sudo apt-get install swi-prolog -y
-RUN sudo apt-get update
+RUN export SWI_HOME_DIR=/usr/lib/swi-prolog
 
 WORKDIR ${PYCRAM_WS}/src/
 RUN git clone --branch fallschool https://github.com/SUTURO/suturo_knowledge.git
