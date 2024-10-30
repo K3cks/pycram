@@ -2,7 +2,7 @@
   "globalOptions": {
     "background": "#111111",
     "colladaLoader": "collada2",
-    "fixedFrame": "pycram/map"
+    "fixedFrame": "map"
   },
   "viewerOptions": {
     "camera": {
@@ -44,7 +44,7 @@
       "name": "Robot model",
       "options": {
         "param": "robot_description",
-        "tfPrefix": "/pycram/pycram_robot"
+        "tfPrefix": "pycram_robot"
       },
       "type": "urdf"
     },
