@@ -14,7 +14,7 @@ COPY --chown=${NB_USER}:users binder/me ${PYCRAM_WS}/src/me
 USER root
 RUN apt-get update
 RUN apt install -y ros-noetic-pr2-arm-kinematics
-RUN apt-get install libjson-glib-1.0-0 libjson-glib-dev
+RUN apt-get install -y libjson-glib-1.0-0 libjson-glib-dev
 
 
 # Build pycram workspace
