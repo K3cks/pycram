@@ -165,10 +165,12 @@ class DefaultWorldStateDetecting(ProcessModule):
 
 class DefaultOpen(ProcessModule):
     """
-    Low-level implementation of opening a container in the simulation. Assumes the handle is already grasped.
+    Low-level implementation for opening a container in the simulation. Assumes that
+    the handle has already been grasped by the robot.
     """
 
     def _execute(self, desig: OpeningMotion):
+        # TODO: Should probably be a motion, but DefaultOpenReal does not do any of these calculations, so maybe its fine? Need to think about this
         part_of_object = desig.object_part.world_object
 
         if desig.object_part.name == "handle_cab3_door_top":
@@ -184,8 +186,10 @@ class DefaultOpen(ProcessModule):
         goal_pose = goal_pose.copy()
         goal_pose.set_orientation(adjusted_grasp)
 
-
-        _move_arm_tcp(goal_pose, World.robot, desig.arm)
+        if desig.goal_location:
+            _navigate_to_pose(desig.goal_location.pose, World.robot)
+        else:
+            _move_arm_tcp(goal_pose, World.robot, desig.arm)
 
         desig.object_part.world_object.set_joint_position(container_joint,
                                                           part_of_object.get_joint_limits(
@@ -194,7 +198,8 @@ class DefaultOpen(ProcessModule):
 
 class DefaultClose(ProcessModule):
     """
-    Low-level implementation that lets the robot close a grasped container, in simulation
+    Low-level implementation for closing a grasped container in simulation.
+    Assumes the robot is already holding the container's handle.
     """
 
     def _execute(self, desig: ClosingMotion):
@@ -213,12 +218,14 @@ class DefaultClose(ProcessModule):
         goal_pose = goal_pose.copy()
         goal_pose.set_orientation(adjusted_grasp)
 
-        _move_arm_tcp(goal_pose, World.robot, desig.arm)
+        if desig.goal_location:
+            _navigate_to_pose(desig.goal_location.pose, World.robot)
+        else:
+            _move_arm_tcp(goal_pose, World.robot, desig.arm)
 
         desig.object_part.world_object.set_joint_position(container_joint,
                                                           part_of_object.get_joint_limits(
                                                               container_joint)[0])
-
 
 def _move_arm_tcp(target: Pose, robot: Object, arm: Arms) -> None:
     gripper = RobotDescription.current_robot_description.get_arm_chain(arm).get_tool_frame()
