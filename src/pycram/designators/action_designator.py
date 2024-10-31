@@ -411,71 +411,158 @@ class DetectAction(ActionDesignatorDescription):
 
 class OpenAction(ActionDesignatorDescription):
     """
-    Opens a container like object
+    Opens a container-like object using a designated arm and navigation poses.
 
-    Can currently not be used
+    This class handles the action of moving a robot's arm to interact with and open
+    container-like objects. It specifies both the arm(s) used and the start and goal
+    locations necessary for positioning the robot during the action.
     """
 
-    def __init__(self, object_designator_description: ObjectPart, arms: List[Arms], resolver=None,
-                 ontology_concept_holders: Optional[List[Thing]] = None):
-        """
-        Moves the arm of the robot to open a container.
+    object_designator_description: ObjectPart
+    """
+    Describes the specific part or handle of the object used for opening.
+    """
 
-        :param object_designator_description: Object designator describing the handle that should be used to open
-        :param arms: A list of possible arms that should be used
-        :param resolver: A alternative specialized_designators that returns a performable designator for the lists of possible parameter.
-        :param ontology_concept_holders: A list of ontology concepts that the action is categorized as or associated with
+    arms: List[Arms]
+    """
+    A list of possible arms designated for the opening action.
+    """
+
+    start_location: AccessingLocation.Location
+    """
+    The start location for the navigation pose required to perform the action.
+    """
+
+    goal_location: Optional[AccessingLocation.Location]
+    """
+    The goal location for the navigation pose, if different from the start location.
+    """
+
+    def __init__(self, object_designator_description: ObjectPart, arms: List[Arms],
+                 start_goal_location: List[AccessingLocation.Location],
+                 resolver=None, ontology_concept_holders: Optional[List[Thing]] = None):
+        """
+        Initializes the OpenAction with specified object, arm, and location parameters.
+
+        Args:
+            object_designator_description (ObjectPart): Describes the part or handle of
+                the object to be used for opening.
+            arms (List[Arms]): A list of arms available for the action.
+            start_goal_location (List[AccessingLocation.Location]): A list containing
+                the start and goal locations for the navigation poses required to perform
+                the action. If both entries are the same, only the start location is set.
+            resolver (optional): A specialized designator that returns a performable
+                designator for the list of possible parameters.
+            ontology_concept_holders (Optional[List[Thing]]): Ontology concepts categorizing
+                or associating the action with certain semantic meanings.
         """
         super().__init__(resolver, ontology_concept_holders)
         self.object_designator_description: ObjectPart = object_designator_description
         self.arms: List[Arms] = arms
+        self.start_location: AccessingLocation.Location = start_goal_location[0]
+        self.goal_location: AccessingLocation.Location = None if start_goal_location[0] == start_goal_location[1] else \
+            start_goal_location[1]
 
         if self.soma:
             self.init_ontology_concepts({"opening": self.soma.Opening})
 
     def ground(self) -> OpenActionPerformable:
         """
-        Default specialized_designators that returns a performable designator with the resolved object description and the first entries
-        from the lists of possible parameter.
+        Returns a performable designator for the `OpenAction`, using the resolved object
+        description and the primary entries from the provided parameter lists.
 
-        :return: A performable designator
+        This method creates an `OpenActionPerformable` instance based on the resolved
+        description of the target object, the first available arm, and the predefined
+        start and goal locations for executing the action.
+
+        Returns:
+            OpenActionPerformable: An instance representing a performable designator for the
+            action, ready to be executed with the specified parameters.
         """
-        return OpenActionPerformable(self.object_designator_description.resolve(), self.arms[0])
+        return OpenActionPerformable(
+            self.object_designator_description.resolve(),
+            self.arms[0],
+            self.start_location,
+            self.goal_location
+        )
 
 
 class CloseAction(ActionDesignatorDescription):
     """
-    Closes a container like object.
+    Closes a container-like object using a designated arm and navigation poses.
 
-    Can currently not be used
+    This class manages the action of moving a robot's arm to interact with and close
+    container-like objects. It specifies the arm(s) to use and the start and goal
+    locations required for positioning the robot during the action.
+    """
+
+    object_designator_description: ObjectPart
+    """
+    Describes the specific part or handle of the object used for closing.
+    """
+
+    arms: List[Arms]
+    """
+    A list of possible arms designated for the closing action.
+    """
+
+    start_location: AccessingLocation.Location
+    """
+    The start location for the navigation pose required to perform the action.
+    """
+
+    goal_location: Optional[AccessingLocation.Location]
+    """
+    The goal location for the navigation pose, if different from the start location.
     """
 
     def __init__(self, object_designator_description: ObjectPart, arms: List[Arms],
+                 start_goal_location: List[AccessingLocation.Location],
                  resolver=None, ontology_concept_holders: Optional[List[Thing]] = None):
         """
-        Attempts to close an open container
+        Initializes the CloseAction with specified object, arm, and location parameters.
 
-        :param object_designator_description: Object designator description of the handle that should be used
-        :param arms: A list of possible arms to use
-        :param resolver: An alternative specialized_designators that returns a performable designator for the list of possible parameter
-        :param ontology_concept_holders: A list of ontology concepts that the action is categorized as or associated with
+        Args:
+            object_designator_description (ObjectPart): Describes the part or handle of
+                the object to be used for closing.
+            arms (List[Arms]): A list of arms available for the action.
+            start_goal_location (List[AccessingLocation.Location]): A list containing
+                the start and goal locations for the navigation poses required to perform
+                the action. If both entries are the same, only the start location is set.
+            resolver (optional): A specialized designator that returns a performable
+                designator for the list of possible parameters.
+            ontology_concept_holders (Optional[List[Thing]]): Ontology concepts categorizing
+                or associating the action with certain semantic meanings.
         """
         super().__init__(resolver, ontology_concept_holders)
         self.object_designator_description: ObjectPart = object_designator_description
         self.arms: List[Arms] = arms
+        self.start_location: AccessingLocation.Location = start_goal_location[0]
+        self.goal_location: AccessingLocation.Location = None if start_goal_location[0] == start_goal_location[1] else \
+            start_goal_location[1]
 
         if self.soma:
             self.init_ontology_concepts({"closing": self.soma.Closing})
 
     def ground(self) -> CloseActionPerformable:
         """
-        Default specialized_designators that returns a performable designator with the resolved object designator and the first entry from
-        the list of possible arms.
+        Returns a performable designator for the `CloseAction`, using the resolved object
+        designator and the primary entry from the list of possible arms.
 
-        :return: A performable designator
+        This method creates a `CloseActionPerformable` instance based on the resolved
+        description of the target object, the first available arm, and the predefined
+        start and goal locations for executing the action.
+
+        Returns:
+            CloseActionPerformable: An instance representing a performable designator for
+            the action, ready to be executed with the specified parameters.
         """
-        return CloseActionPerformable(self.object_designator_description.resolve(), self.arms[0])
-
+        return CloseActionPerformable(
+            self.object_designator_description.resolve(),
+            self.arms[0],
+            self.start_location,
+            self.goal_location
+        )
 
 class GraspingAction(ActionDesignatorDescription):
     """
@@ -1356,23 +1443,50 @@ class DetectActionPerformable(ActionAbstract):
 @dataclass
 class OpenActionPerformable(ActionAbstract):
     """
-    Opens a container like object
+    Opens a container-like object using a specified arm.
     """
 
     object_designator: ObjectPart.Object
     """
-    Object designator describing the object that should be opened
+    Describes the object that should be opened.
     """
+
     arm: Arms
     """
-    Arm that should be used for opening the container
+    The arm designated for opening the container.
     """
+
+    start_location: AccessingLocation.Location
+    """
+    The initial location from which the opening action begins.
+    """
+
+    goal_location: Optional[AccessingLocation.Location]
+    """
+    The final goal location for the opening action.
+    """
+
     orm_class: Type[ActionAbstract] = field(init=False, default=ORMOpenAction)
+    """
+    ORM class type for this action.
+    """
 
     @with_tree
     def perform(self) -> None:
+        """
+        Executes the open action by navigating to the start location, performing a grasp,
+        and executing the opening motion to the goal location.
+
+        The process includes:
+        1. Navigating to the specified `start_location`.
+        2. Performing the grasp action on the designated object.
+        3. Executing the opening motion towards the `goal_location`.
+        4. Releasing the gripper to complete the opening.
+
+        """
+        NavigateAction([self.start_location.pose]).resolve().perform()
         GraspingActionPerformable(self.arm, self.object_designator).perform()
-        OpeningMotion(self.object_designator, self.arm).perform()
+        OpeningMotion(self.object_designator, self.arm, self.goal_location).perform()
 
         MoveGripperMotion(GripperState.OPEN, self.arm, allow_gripper_collision=True).perform()
 
@@ -1380,23 +1494,50 @@ class OpenActionPerformable(ActionAbstract):
 @dataclass
 class CloseActionPerformable(ActionAbstract):
     """
-    Closes a container like object.
+    Closes a container-like object using a specified arm.
     """
 
     object_designator: ObjectPart.Object
     """
-    Object designator describing the object that should be closed
+    Describes the object that should be closed.
     """
+
     arm: Arms
     """
-    Arm that should be used for closing
+    The arm designated for closing the container.
     """
+
+    start_location: AccessingLocation.Location
+    """
+    The initial location from which the closing action begins.
+    """
+
+    goal_location: Optional[AccessingLocation.Location]
+    """
+    The final goal location for the closing action.
+    """
+
     orm_class: Type[ActionAbstract] = field(init=False, default=ORMCloseAction)
+    """
+    ORM class type for this action.
+    """
 
     @with_tree
     def perform(self) -> None:
+        """
+        Executes the close action by navigating to the start location, performing a grasp,
+        and executing the closing motion to the goal location.
+
+        The process includes:
+        1. Navigating to the specified `start_location`.
+        2. Performing the grasp action on the designated object.
+        3. Executing the closing motion towards the `goal_location`.
+        4. Releasing the gripper to complete the closing.
+
+        """
+        NavigateAction([self.start_location.pose]).resolve().perform()
         GraspingActionPerformable(self.arm, self.object_designator).perform()
-        ClosingMotion(self.object_designator, self.arm).perform()
+        ClosingMotion(self.object_designator, self.arm, self.goal_location).perform()
 
         MoveGripperMotion(GripperState.OPEN, self.arm, allow_gripper_collision=True).perform()
 

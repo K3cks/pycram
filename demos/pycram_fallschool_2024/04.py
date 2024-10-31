@@ -15,7 +15,8 @@ from pycram.datastructures.dataclasses import Color
 
 extension = ObjectDescription.get_file_extension()
 
-world = BulletWorld(WorldMode.GUI)
+world = BulletWorld(WorldMode.DIRECT)
+# world.allow_publish_debug_poses = True
 viz = VizMarkerPublisher()
 robot_name = "pr2"
 robot = Object(robot_name, ObjectType.ROBOT, f"{robot_name}{extension}", pose=Pose([1, 2, 0]))
@@ -36,12 +37,12 @@ with simulated_robot:
 
     MoveTorsoAction([TorsoState.HIGH]).resolve().perform()
     handle_desig = ObjectPart(names=["handle_cab3_door_top"], part_of=apartment_desig.resolve())
-    # closed_location, opened_location = AccessingLocation(handle_desig=handle_desig.resolve(),
-    #                                                      robot_desig=robot_desig.resolve()).resolve()
+    closed_location, opened_location = AccessingLocation(handle_desig=handle_desig.resolve(),
+                                                         robot_desig=robot_desig.resolve()).resolve()
 
-    #NavigateAction([closed_location.pose]).resolve().perform()
-    OpenAction(object_designator_description=handle_desig, arms=[Arms.LEFT]).resolve().perform()
-    CloseAction(object_designator_description=handle_desig, arms=[Arms.LEFT]).resolve().perform()
+    # NavigateAction([closed_location.pose]).resolve().perform()
+    # OpenAction(object_designator_description=handle_desig, arms=[Arms.LEFT]).resolve().perform()
+    # CloseAction(object_designator_description=handle_desig, arms=[Arms.LEFT]).resolve().perform()
 
-    # OpenAction(object_designator_description=handle_desig, arms=[Arms.LEFT],
-    #            start_goal_location=[poseHard, poseHard]).resolve().perform()
+    OpenAction(object_designator_description=handle_desig, arms=[closed_location.arms[0]],
+               start_goal_location=[closed_location, opened_location]).resolve().perform()
