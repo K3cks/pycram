@@ -1,6 +1,6 @@
 {
   "globalOptions": {
-    "background": "#111111",
+    "background": "#2b2b2b",
     "colladaLoader": "collada2",
     "fixedFrame": "map"
   },
@@ -34,8 +34,8 @@
       "name": "Grid",
       "options": {
         "cellSize": "1",
-        "color": "#eeeeee",
-        "numCells": "20"
+        "color": "#4f4f4f",
+        "numCells": "40"
       },
       "type": "grid"
     },
@@ -65,6 +65,33 @@
         "topic": "/pycram/viz_marker"
       },
       "type": "markerArray"
+    },
+
+      {
+      "isShown": true,
+      "name": "Axis Marker",
+      "options": {
+        "topic": "/pycram/axis_marker"
+      },
+      "type": "markerArray"
+    },
+
+      {
+      "isShown": true,
+      "name": "Manual Marker",
+      "options": {
+        "topic": "/pycram/manual_marker"
+      },
+      "type": "markerArray"
+    },
+
+      {
+      "isShown": true,
+      "name": "Costmap marker",
+      "options": {
+        "topic": "/pycram/costmap_marker"
+      },
+      "type": "markers"
     }
 
   
