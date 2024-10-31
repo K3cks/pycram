@@ -50,7 +50,9 @@ with simulated_robot:
 
     LookAtAction(targets=[milk_desig.resolve().pose]).resolve().perform()
     obj_desig = DetectAction(milk_desig).resolve().perform()
-    milk_target_pose = Pose([4.8, 3.45, 0.8])
+    milk_target_pose = Pose([5.34, 3.55, 0.8])
+    ParkArmsAction([Arms.BOTH]).resolve().perform()
+    MoveTorsoAction([TorsoState.HIGH]).resolve().perform()
     TransportAction(obj_desig, [Arms.LEFT], [milk_target_pose]).resolve().perform()
 
 
