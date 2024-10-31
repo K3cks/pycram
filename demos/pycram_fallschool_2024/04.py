@@ -50,11 +50,11 @@ with simulated_robot:
 
     LookAtAction(targets=[milk_desig.resolve().pose]).resolve().perform()
     obj_desig = DetectAction(milk_desig).resolve().perform()
-    # pickup_loc = CostmapLocation(target=obj_desig, reachable_for=robot_desig.resolve(),
-    #                              reachable_arm=Arms.RIGHT, used_grasps=[Grasp.FRONT]).resolve()
-    NavigateAction([opened_location.pose]).resolve().perform()
-    MoveTorsoAction([TorsoState.LOW]).resolve().perform()
-    PickUpAction(obj_desig, [Arms.RIGHT], [Grasp.FRONT]).resolve().perform()
+    milk_target_pose = Pose([4.8, 3.45, 0.8])
+    TransportAction(obj_desig, [Arms.LEFT], [milk_target_pose]).resolve().perform()
+
+
+
     CloseAction(object_designator_description=handle_desig, arms=[closed_location.arms[0]],
                         start_goal_location=[opened_location, closed_location]).resolve().perform()
 
