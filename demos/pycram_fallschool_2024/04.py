@@ -31,12 +31,12 @@ apartment_desig = BelieveObject(names=["apartment"])
 #
 
 
-milk = Object("milk", ObjectType.MILK, "milk.stl", pose=Pose([0.4, 2.5, 1]))
-# milk.color = Color(0, 0, 1, 1)
-# milk_desig = BelieveObject(names=["milk"])
+milk = Object("milk", ObjectType.MILK, "milk.stl", pose=Pose([0.5, 2.5, 1]))
+milk.color = Color(0, 0, 1, 1)
+milk_desig = BelieveObject(names=["milk"])
 
 with simulated_robot:
-    poseHard = Pose([1.3, 2.5, 0], [0, 0, 1, 0])
+    poseHard = Pose([1.3, 2.7, 0], [0, 0, 1, 0])
     NavigateAction([poseHard]).resolve().perform()
 
     ParkArmsAction([Arms.BOTH]).resolve().perform()
@@ -47,5 +47,14 @@ with simulated_robot:
                                                          robot_desig=robot_desig.resolve()).resolve()
     OpenAction(object_designator_description=handle_desig, arms=[closed_location.arms[0]],
                start_goal_location=[closed_location, opened_location]).resolve().perform()
+
+    LookAtAction(targets=[milk_desig.resolve().pose]).resolve().perform()
+    obj_desig = DetectAction(milk_desig).resolve().perform()
+    # pickup_loc = CostmapLocation(target=obj_desig, reachable_for=robot_desig.resolve(),
+    #                              reachable_arm=Arms.RIGHT, used_grasps=[Grasp.FRONT]).resolve()
+    NavigateAction([opened_location.pose]).resolve().perform()
+    MoveTorsoAction([TorsoState.LOW]).resolve().perform()
+    PickUpAction(obj_desig, [Arms.RIGHT], [Grasp.FRONT]).resolve().perform()
     CloseAction(object_designator_description=handle_desig, arms=[closed_location.arms[0]],
                         start_goal_location=[opened_location, closed_location]).resolve().perform()
+
