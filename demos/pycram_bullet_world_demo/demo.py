@@ -15,9 +15,9 @@ from pycram.datastructures.dataclasses import Color
 
 extension = ObjectDescription.get_file_extension()
 
-world = BulletWorld(WorldMode.DIRECT)
+world = BulletWorld(WorldMode.GUI)
 viz = VizMarkerPublisher()
-robot_name = "tiago_dual"
+robot_name = "pr2"
 robot = Object(robot_name, ObjectType.ROBOT, f"{robot_name}{extension}", pose=Pose([1, 2, 0]))
 
 apartment = Object("apartment", ObjectType.ENVIRONMENT, f"apartment-small{extension}")
