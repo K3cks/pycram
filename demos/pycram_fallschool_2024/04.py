@@ -28,8 +28,12 @@ apartment = Object("apartment", ObjectType.ENVIRONMENT, f"apartment-small{extens
 
 robot_desig = BelieveObject(names=[robot_name])
 apartment_desig = BelieveObject(names=["apartment"])
+#
 
 
+milk = Object("milk", ObjectType.MILK, "milk.stl", pose=Pose([0.4, 2.5, 1]))
+# milk.color = Color(0, 0, 1, 1)
+# milk_desig = BelieveObject(names=["milk"])
 
 with simulated_robot:
     poseHard = Pose([1.3, 2.5, 0], [0, 0, 1, 0])
@@ -41,11 +45,6 @@ with simulated_robot:
     handle_desig = ObjectPart(names=["handle_cab3_door_top"], part_of=apartment_desig.resolve())
     closed_location, opened_location = AccessingLocation(handle_desig=handle_desig.resolve(),
                                                          robot_desig=robot_desig.resolve()).resolve()
-
-    # NavigateAction([closed_location.pose]).resolve().perform()
-    # OpenAction(object_designator_description=handle_desig, arms=[Arms.LEFT]).resolve().perform()
-    # CloseAction(object_designator_description=handle_desig, arms=[Arms.LEFT]).resolve().perform()
-
     OpenAction(object_designator_description=handle_desig, arms=[closed_location.arms[0]],
                start_goal_location=[closed_location, opened_location]).resolve().perform()
     CloseAction(object_designator_description=handle_desig, arms=[closed_location.arms[0]],
