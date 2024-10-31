@@ -1,5 +1,6 @@
 from pycram.external_interfaces.ik import request_ik
 from pycram.plan_failures import IKError
+from pycram.ros.tf_broadcaster import TFBroadcaster
 from pycram.ros.viz_marker_publisher import VizMarkerPublisher, AxisMarkerPublisher, CostmapPublisher
 from pycram.utils import _apply_ik
 from pycram.worlds.bullet_world import BulletWorld
@@ -16,8 +17,10 @@ from pycram.datastructures.dataclasses import Color
 extension = ObjectDescription.get_file_extension()
 
 world = BulletWorld(WorldMode.DIRECT)
-# world.allow_publish_debug_poses = True
+world.allow_publish_debug_poses = True
 viz = VizMarkerPublisher()
+tf = TFBroadcaster()
+
 robot_name = "pr2"
 robot = Object(robot_name, ObjectType.ROBOT, f"{robot_name}{extension}", pose=Pose([1, 2, 0]))
 
@@ -25,7 +28,6 @@ apartment = Object("apartment", ObjectType.ENVIRONMENT, f"apartment-small{extens
 
 robot_desig = BelieveObject(names=[robot_name])
 apartment_desig = BelieveObject(names=["apartment"])
-
 
 
 
@@ -46,3 +48,5 @@ with simulated_robot:
 
     OpenAction(object_designator_description=handle_desig, arms=[closed_location.arms[0]],
                start_goal_location=[closed_location, opened_location]).resolve().perform()
+    CloseAction(object_designator_description=handle_desig, arms=[closed_location.arms[0]],
+                        start_goal_location=[opened_location, closed_location]).resolve().perform()
