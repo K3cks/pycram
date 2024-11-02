@@ -1,6 +1,7 @@
 import rospy
 from json_prolog_msgs.srv import PrologQuery, PrologNextSolution, PrologFinish, PrologQueryRequest, PrologNextSolutionRequest, PrologFinishRequest
 from typing import Iterator, Dict, List, Optional
+import pycram.external_interfaces.knowrob_designator_client as kdc
 
 class PrologQueryWrapper:
     def __init__(self, query_str: str, simple_query_srv, next_solution_srv, finish_srv, iterative=True):
@@ -73,6 +74,7 @@ class Prolog:
         self._simple_query_srv = rospy.ServiceProxy(f'{namespace}/query', PrologQuery)
         self._next_solution_srv = rospy.ServiceProxy(f'{namespace}/next_solution', PrologNextSolution)
         self._finish_query_srv = rospy.ServiceProxy(f'{namespace}/finish', PrologFinish)
+        self.all_solutions(f"init_gpsr_2024.") # intit semantic map things
         rospy.loginfo("[KnowRob]  done.")
 
     def query(self, query_str):
@@ -80,8 +82,13 @@ class Prolog:
         return PrologQueryWrapper(query_str, simple_query_srv=self._simple_query_srv,
                                   next_solution_srv=self._next_solution_srv, finish_srv=self._finish_query_srv)
 
+
+
     def once(self, query_str: str) -> Optional[Dict]:
         """Retrieve one solution from the query and finish immediately."""
+        # differenciate between fallschool designator queries and normal prolog
+        if "type=" in query_str:
+            return kdc.send_simple_query(query_str)
         with PrologQueryWrapper(query_str, self._simple_query_srv, self._next_solution_srv, self._finish_query_srv) as query:
             try:
                 return next(query.solutions())
@@ -90,5 +97,8 @@ class Prolog:
 
     def all_solutions(self, query_str: str) -> List[Dict]:
         """Retrieve all solutions at once."""
+        # differenciate between fallschool designator queries and normal prolog
+        if "type=" in query_str:
+            return kdc.send_simple_query(query_str)
         with PrologQueryWrapper(query_str, self._simple_query_srv, self._next_solution_srv, self._finish_query_srv, iterative=False) as query:
             return list(query.solutions())

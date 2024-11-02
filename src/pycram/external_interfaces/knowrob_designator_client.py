@@ -27,3 +27,8 @@ def send_simple_query(query):
     except rospy.ServiceException as e:
         rospy.logerr(f"Service call failed: {e}")
         return None
+    
+
+# just a pretty print interface    
+def query(query_str):
+    send_simple_query(query_str)
