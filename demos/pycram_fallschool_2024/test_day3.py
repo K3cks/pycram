@@ -12,29 +12,23 @@ from pycram.world_concepts.world_object import Object
 from pycram.datastructures.dataclasses import Color
 from pycram.designators.object_designator import BelieveObject
 from pycram.designators.designator_notation_interface import ActionDesignator as Action
-from neem_interface_python import rosprolog_client as Prolog
+from pycram.external_interfaces.rosprolog_interface import Prolog
 
 world, apartment, milk_desig, robot_desig, apartment_desig, prolog_client = None, None, None, None, None, None
 
 
 def init_prolog_client():
     global prolog_client
-    prolog_client = Prolog.Prolog()
-    retry = 7
-    #    kb = KnowrobKnowledge()
-    while (not prolog_client.prolog_client) and retry > 0:
-        rospy.loginfo(f"[CRAM-KNOW] Waiting for knowrob connection... {retry} retries left.")
-        prolog_client.connect()
-        rospy.sleep(1)
-        retry -= 1
-    prolog_client.prolog_client.all_solutions(f"init_gpsr_2024.")
+    prolog_client = Prolog()
+    prolog_client.all_solutions(f"init_gpsr_2024.")  # initializes semantic map stuff
     rospy.loginfo("[CRAM-KNOW] Connected.")
+
 
 # usage example: query("get_name_handle('Refrigerator', Result).")
 # query("get_name_handle('Refrigerator', Result).").get('Result')
 def query(query_string):
     global prolog_client
-    result = prolog_client.ensure_once(query_string)
+    result = prolog_client.once(query_string)
     return result
 
 

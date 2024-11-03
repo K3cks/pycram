@@ -71,7 +71,7 @@ class VizMarkerPublisher:
                 if not geom:
                     continue
                 msg = Marker()
-                msg.header.frame_id = "pycram/map"
+                msg.header.frame_id = "map"
                 msg.ns = obj.name
                 msg.id = obj.link_name_to_id[link]
                 msg.type = Marker.MESH_RESOURCE

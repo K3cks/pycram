@@ -75,8 +75,8 @@ class TFBroadcaster:
         frame_id = pose.frame
         if frame_id != child_frame_id:
             tf_stamped = pose.to_transform(child_frame_id)
-            tf_stamped.frame = "pycram" + "/" + tf_stamped.frame
-            tf_stamped.child_frame_id = "pycram" + "/" + tf_stamped.child_frame_id
+            tf_stamped.frame = tf_stamped.frame
+            tf_stamped.child_frame_id = tf_stamped.child_frame_id
             tf2_msg.transforms.append(tf_stamped)
 
     def _update_static_odom(self) -> None:
