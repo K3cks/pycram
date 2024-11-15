@@ -27,3 +27,4 @@ class DEMOS(Enum):
     APARTMENT = auto()
     KITCHEN = auto()
     TRIPLE = auto()
+    MULTIPROCESS = auto()
