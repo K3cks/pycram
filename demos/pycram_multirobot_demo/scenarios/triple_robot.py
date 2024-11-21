@@ -30,10 +30,10 @@ def triple_robots(robot_one: ROBOTS, robot_two: ROBOTS, robot_three: ROBOTS, lau
     rospy.sleep(3)
     print(f"{second_robot.name} actions")
     with simulated_robot(second_robot):
-        actions(park=True, torso=True)
+        actions(park=True, torso=0.25)
 
     with simulated_robot(third_robot):
-        actions(park=True, torso=True)
+        actions(park=True, torso=0.25)
 
     with simulated_robot(first_robot):
-        actions(torso=True)
+        actions(torso=0.25)
