@@ -133,7 +133,11 @@ class PR2MoveJoints(ProcessModule):
     """
 
     def _execute(self, desig: MoveJointsMotion):
-        robot = RobotManager.active_robot
+        robot = desig.used_robot
+
+        if robot is None:
+            robot = RobotManager.active_robot
+
         robot.set_joint_positions(dict(zip(desig.names, desig.positions)))
 
 

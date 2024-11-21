@@ -16,14 +16,14 @@ def set_active_robot(robot: ROBOTS):
         rospy.logerr(f'No topic named {robot_topic} found')
 
 
-def actions(park=False, torso=None, navigate=False):
+def actions(park=False, torso=None, navigate=False, used_robot=None):
     if park:
         rospy.sleep(2)
         ParkArmsAction([Arms.BOTH]).resolve().perform()
 
     if torso is not None:
         rospy.sleep(2)
-        MoveTorsoAction([torso]).resolve().perform()
+        MoveTorsoAction([torso], used_robot=used_robot).resolve().perform()
 
     if navigate:
         rospy.sleep(2)

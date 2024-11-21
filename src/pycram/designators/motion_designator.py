@@ -18,6 +18,7 @@ from typing_extensions import Dict, Optional, get_type_hints
 from ..datastructures.pose import Pose
 from ..tasktree import with_tree
 from ..designator import BaseMotion
+from ..world_concepts.world_object import Object
 
 
 @dataclass
@@ -255,8 +256,10 @@ class MoveJointsMotion(BaseMotion):
     Target positions of joints, should correspond to the list of names
     """
 
+    used_robot: Optional[Object] = None
+
     def perform(self):
-        pm_manager = ProcessModuleManager.get_manager()
+        pm_manager = ProcessModuleManager.get_manager(robot=self.used_robot)
         return pm_manager.move_joints().execute(self)
 
     def to_sql(self) -> ORMMotionDesignator:

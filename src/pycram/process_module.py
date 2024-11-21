@@ -284,12 +284,15 @@ class ProcessModuleManager(ABC):
         ProcessModuleManager.available_pms.append(self)
 
     @staticmethod
-    def get_manager() -> Union[ProcessModuleManager, None]:
+    def get_manager(robot=None) -> Union[ProcessModuleManager, None]:
         """
         Returns the Process Module manager for the currently loaded robot or None if there is no Manager.
 
         :return: ProcessModuleManager instance of the current robot
         """
+        if robot is None:
+            robot=RobotDescription.current_robot_description
+
         manager = None
         _default_manager = None
         if not ProcessModuleManager.execution_type:
@@ -298,7 +301,7 @@ class ProcessModuleManager(ABC):
             return
 
         for pm_manager in ProcessModuleManager.available_pms:
-            if pm_manager.robot_name == RobotDescription.current_robot_description.name:
+            if pm_manager.robot_name == robot.name:
                 manager = pm_manager
             if pm_manager.robot_name == "default":
                 _default_manager = pm_manager

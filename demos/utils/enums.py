@@ -5,7 +5,7 @@ class ROBOTS(Enum):
     PANDA = 'panda'
     PR2 = 'pr2'
     HSRB = 'hsrb'
-    TIAGO = 'tiago'
+    TIAGO = 'tiago_dual'
     BOXY = 'boxy'
     UR5 = 'ur5'
     TURTLE = 'turtlebot'
@@ -27,4 +27,4 @@ class DEMOS(Enum):
     APARTMENT = auto()
     KITCHEN = auto()
     TRIPLE = auto()
-    MULTIPROCESS = auto()
+    THREADED = auto()

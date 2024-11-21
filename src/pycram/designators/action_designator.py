@@ -33,7 +33,7 @@ from ..orm.action_designator import (ParkArmsAction as ORMParkArmsAction, Naviga
 from ..orm.base import Pose as ORMPose
 from ..orm.object_designator import Object as ORMObject
 from ..plan_failures import ObjectUnfetchable, ReachabilityFailure
-from ..robot_description import RobotDescription
+from ..robot_description import RobotDescription, RobotDescriptionManager
 from ..tasktree import with_tree
 from ..utilities.robocup_utils import multiply_quaternions
 
@@ -43,7 +43,7 @@ class MoveTorsoAction(ActionDesignatorDescription):
     Action Designator for Moving the torso of the robot up and down
     """
 
-    def __init__(self, positions: List[float], resolver=None,
+    def __init__(self, positions: List[float], used_robot: Optional[Object] = None, resolver=None,
                  ontology_concept_holders: Optional[List[OntologyConceptHolder]] = None):
         """
         Create a designator description to move the torso of the robot up and down.
@@ -54,6 +54,7 @@ class MoveTorsoAction(ActionDesignatorDescription):
         """
         super().__init__(resolver, ontology_concept_holders)
         self.positions: List[float] = positions
+        self.used_robot = used_robot
 
         if self.soma:
             self.init_ontology_concepts({"move_torso": self.soma.MoveTorso})
@@ -64,7 +65,7 @@ class MoveTorsoAction(ActionDesignatorDescription):
 
         :return: A performable action designator
         """
-        return MoveTorsoActionPerformable(self.positions[0])
+        return MoveTorsoActionPerformable(self.positions[0], used_robot=self.used_robot)
 
     def __iter__(self):
         """
@@ -666,9 +667,19 @@ class MoveTorsoActionPerformable(ActionAbstract):
     """
     orm_class: Type[ActionAbstract] = field(init=False, default=ORMMoveTorsoAction)
 
+    used_robot: Optional[Object] = None
+
     @with_tree
     def perform(self) -> None:
-        MoveJointsMotion([RobotDescription.current_robot_description.torso_joint], [self.position]).perform()
+
+
+        torso_joint = RobotDescription.current_robot_description.torso_joint
+
+        if self.used_robot is not None:
+            rdm = RobotDescriptionManager()
+            torso_joint = rdm.descriptions[self.used_robot.name].torso_joint
+
+        MoveJointsMotion([torso_joint], [self.position], used_robot=self.used_robot).perform()
 
 
 @dataclass

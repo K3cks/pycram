@@ -2,7 +2,7 @@ from IPython.core.display_functions import display
 from ipywidgets import HTML
 
 from demos.pycram_multirobot_demo.scenarios.move_and_park import move_and_park
-from demos.pycram_multirobot_demo.scenarios.multiprocess_torso import multiprocess_torso
+from demos.pycram_multirobot_demo.scenarios.multithread_torso import multithreaded_torsos
 from demos.pycram_multirobot_demo.scenarios.transporting_apartment import transporting_apartment
 from demos.pycram_multirobot_demo.scenarios.transporting_kitchen import transporting_kitchen
 from demos.pycram_multirobot_demo.scenarios.triple_robot import triple_robots
@@ -25,8 +25,8 @@ def multirobot_demo(robot_one: ROBOTS = ROBOTS.PR2, robot_two: ROBOTS = ROBOTS.T
         transporting_kitchen(robot_one=robot_one, robot_two=robot_two)
     elif demo == DEMOS.TRIPLE:
         triple_robots(robot_one=robot_one, robot_two=robot_two, robot_three=ROBOTS.ARMAR6)
-    elif demo == DEMOS.MULTIPROCESS:
-        multiprocess_torso(robot_one=robot_one, robot_two=robot_two)
+    elif demo == DEMOS.THREADED:
+        multithreaded_torsos(robot_one=robot_one, robot_two=robot_two)
 
 
 def multirobot_demo_binder(robot_one, robot_two, environment):
@@ -37,7 +37,7 @@ def multirobot_demo_binder(robot_one, robot_two, environment):
 if __name__ == '__main__':
     r1 = ROBOTS.PR2
     r2 = ROBOTS.TIAGO
-    demo = DEMOS.MULTIPROCESS
-    mode = WorldMode.GUI
+    demo = DEMOS.THREADED
+    mode = WorldMode.DIRECT
 
     multirobot_demo(robot_one=r1, robot_two=r2, demo=demo, mode=mode)
