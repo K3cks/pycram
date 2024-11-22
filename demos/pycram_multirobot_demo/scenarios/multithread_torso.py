@@ -11,13 +11,18 @@ from pycram.process_module import simulated_robot
 def robot_one_actions(first_torso_value, second_torso_value, robot, iterations=10):
     with simulated_robot(robot):
         i = 0
-
+        pose1 = Pose(position=[0, 1, 0])
+        pose2 = Pose(position=[1, 0, 0])
         actions(park=True, used_robot=robot)
 
         while i < iterations:
+            actions(navigate=pose1, used_robot=robot)
+
             actions(torso=first_torso_value, used_robot=robot)
 
             actions(torso=second_torso_value, used_robot=robot)
+
+            actions(navigate=pose2, used_robot=robot)
             i += 1
 
 

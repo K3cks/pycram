@@ -27,6 +27,6 @@ def actions(park=False, torso=None, navigate=None, used_robot=None):
 
     if navigate is not None:
         rospy.sleep(2)
-        NavigateAction(target_locations=[navigate]).resolve().perform()
+        NavigateAction(target_locations=[navigate], used_robot=used_robot).resolve().perform()
 
     print("done")
