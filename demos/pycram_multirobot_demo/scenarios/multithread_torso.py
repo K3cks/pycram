@@ -8,14 +8,29 @@ from pycram.datastructures.pose import Pose
 from pycram.multirobot.multi_threaded_robots import MultiThreadedRobot
 from pycram.process_module import simulated_robot
 
-def cycle_robot(first_torso_value, second_torso_value, robot, iterations=10):
+def robot_one_actions(first_torso_value, second_torso_value, robot, iterations=10):
     with simulated_robot(robot):
         i = 0
+
+        actions(park=True, used_robot=robot)
+
         while i < iterations:
             actions(torso=first_torso_value, used_robot=robot)
 
             actions(torso=second_torso_value, used_robot=robot)
             i += 1
+
+
+def robot_two_actions(first_torso_value, second_torso_value, robot, iterations=10):
+    with simulated_robot(robot):
+        i = 0
+
+        while i < iterations:
+            actions(torso=first_torso_value, used_robot=robot)
+
+            actions(torso=second_torso_value, used_robot=robot)
+            i += 1
+
 
 
 def multithreaded_torsos(robot_one: ROBOTS, robot_two: ROBOTS, launch_robots=True):
@@ -32,7 +47,7 @@ def multithreaded_torsos(robot_one: ROBOTS, robot_two: ROBOTS, launch_robots=Tru
     print(f"{first_robot.name} and {second_robot.name} actions")
 
     mtr = MultiThreadedRobot()
-    process = mtr.start_process(cycle_robot, (0.25, 0.0, first_robot, 5))
-    process2 = mtr.start_process(cycle_robot, (0.25, 0.0, second_robot, 10))
+    process = mtr.start_process(robot_one_actions, (0.25, 0.0, first_robot, 5))
+    process2 = mtr.start_process(robot_two_actions, (0.25, 0.0, second_robot, 10))
     mtr.end(process)
     mtr.end(process2)

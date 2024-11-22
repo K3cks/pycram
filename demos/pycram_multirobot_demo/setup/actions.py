@@ -19,7 +19,7 @@ def set_active_robot(robot: ROBOTS):
 def actions(park=False, torso=None, navigate=False, used_robot=None):
     if park:
         rospy.sleep(2)
-        ParkArmsAction([Arms.BOTH]).resolve().perform()
+        ParkArmsAction([Arms.BOTH], used_robot=used_robot).resolve().perform()
 
     if torso is not None:
         rospy.sleep(2)
