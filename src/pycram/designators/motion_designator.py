@@ -32,9 +32,11 @@ class MoveMotion(BaseMotion):
     Location to which the robot should be moved
     """
 
+    used_robot: Optional[Object] = None
+
     @with_tree
     def perform(self):
-        pm_manager = ProcessModuleManager.get_manager()
+        pm_manager = ProcessModuleManager.get_manager(robot=self.used_robot)
         return pm_manager.navigate().execute(self)
         # return ProcessModule.perform(self)
 

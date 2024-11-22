@@ -281,7 +281,7 @@ class NavigateAction(ActionDesignatorDescription):
     Navigates the Robot to a position.
     """
 
-    def __init__(self, target_locations: List[Pose], resolver=None,
+    def __init__(self, target_locations: List[Pose], used_robot: Optional[Object] = None, resolver=None,
                  ontology_concept_holders: Optional[List[Thing]] = None):
         """
         Navigates the robot to a location.
@@ -292,6 +292,7 @@ class NavigateAction(ActionDesignatorDescription):
         """
         super().__init__(resolver, ontology_concept_holders)
         self.target_locations: List[Pose] = target_locations
+        self.used_robot=used_robot
 
         if self.soma:
             self.init_ontology_concepts({"navigating": self.soma.Navigating})
@@ -302,7 +303,7 @@ class NavigateAction(ActionDesignatorDescription):
 
         :return: A performable designator
         """
-        return NavigateActionPerformable(self.target_locations[0])
+        return NavigateActionPerformable(self.target_locations[0], used_robot=self.used_robot)
 
 
 class TransportAction(ActionDesignatorDescription):
@@ -1004,9 +1005,11 @@ class NavigateActionPerformable(ActionAbstract):
     """
     orm_class: Type[ActionAbstract] = field(init=False, default=ORMNavigateAction)
 
+    used_robot: Optional[Object] = None
+
     @with_tree
     def perform(self) -> None:
-        MoveMotion(self.target_location).perform()
+        MoveMotion(self.target_location, used_robot=self.used_robot).perform()
 
 
 @dataclass

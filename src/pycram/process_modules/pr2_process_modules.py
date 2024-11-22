@@ -36,7 +36,11 @@ class Pr2Navigation(ProcessModule):
     """
 
     def _execute(self, desig: MoveMotion):
-        robot = RobotManager.active_robot
+        robot = desig.used_robot
+
+        if robot is None:
+            robot = RobotManager.active_robot
+
         robot.set_pose(desig.target)
 
 
