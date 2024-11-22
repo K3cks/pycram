@@ -27,4 +27,5 @@ class DEMOS(Enum):
     APARTMENT = auto()
     KITCHEN = auto()
     TRIPLE = auto()
-    THREADED = auto()
+    THREADED_TEST = auto()
+    PARTY = auto()

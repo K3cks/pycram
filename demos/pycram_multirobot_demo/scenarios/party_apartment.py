@@ -38,13 +38,15 @@ def robot_two_actions(first_torso_value, second_torso_value, robot, iterations=1
 
 
 
-def multithreaded_torsos(robot_one: ROBOTS, robot_two: ROBOTS, launch_robots=True):
+def party_apartment(robot_one: ROBOTS, robot_two: ROBOTS, robot_three: ROBOTS, launch_robots=True):
     if launch_robots:
         first_robot_launch = launch_robot(robot_one, use_namespace=True)
         second_robot_launch = launch_robot(robot_two, use_namespace=True)
+        third_robot_launch = launch_robot(robot_three, use_namespace=True)
 
     pose_pr2 = Pose([0, 1, 0])
     pose_tiago = Pose([0, 3, 0])
+
 
     first_robot = create_robot(robot_one, pose=pose_pr2)
     second_robot = create_robot(robot_two, pose=pose_tiago)

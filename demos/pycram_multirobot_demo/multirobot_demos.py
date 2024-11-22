@@ -2,7 +2,8 @@ from IPython.core.display_functions import display
 from ipywidgets import HTML
 
 from demos.pycram_multirobot_demo.scenarios.move_and_park import move_and_park
-from demos.pycram_multirobot_demo.scenarios.multithread_torso import multithreaded_torsos
+from demos.pycram_multirobot_demo.scenarios.multithread_testing import multithreaded_testing
+from demos.pycram_multirobot_demo.scenarios.party_apartment import party_apartment
 from demos.pycram_multirobot_demo.scenarios.transporting_apartment import transporting_apartment
 from demos.pycram_multirobot_demo.scenarios.transporting_kitchen import transporting_kitchen
 from demos.pycram_multirobot_demo.scenarios.triple_robot import triple_robots
@@ -12,7 +13,7 @@ from pycram.ros.viz_marker_publisher import VizMarkerPublisher
 from pycram.worlds.bullet_world import BulletWorld
 
 
-def multirobot_demo(robot_one: ROBOTS = ROBOTS.PR2, robot_two: ROBOTS = ROBOTS.TIAGO,
+def multirobot_demo(robot_one: ROBOTS = ROBOTS.PR2, robot_two: ROBOTS = ROBOTS.TIAGO, robot_three: ROBOTS = ROBOTS.ARMAR6,
                     demo=DEMOS.APARTMENT, mode=WorldMode.GUI):
     world = BulletWorld(mode)
     viz = VizMarkerPublisher() if mode == WorldMode.DIRECT else None
@@ -24,9 +25,11 @@ def multirobot_demo(robot_one: ROBOTS = ROBOTS.PR2, robot_two: ROBOTS = ROBOTS.T
     elif demo == DEMOS.KITCHEN:
         transporting_kitchen(robot_one=robot_one, robot_two=robot_two)
     elif demo == DEMOS.TRIPLE:
-        triple_robots(robot_one=robot_one, robot_two=robot_two, robot_three=ROBOTS.ARMAR6)
-    elif demo == DEMOS.THREADED:
-        multithreaded_torsos(robot_one=robot_one, robot_two=robot_two)
+        triple_robots(robot_one=robot_one, robot_two=robot_two, robot_three=robot_three)
+    elif demo == DEMOS.THREADED_TEST:
+        multithreaded_testing(robot_one=robot_one, robot_two=robot_two)
+    elif demo == DEMOS.PARTY:
+        party_apartment(robot_one=robot_one, robot_two=robot_two, robot_three=robot_three)
 
 
 def multirobot_demo_binder(robot_one, robot_two, environment):
@@ -37,7 +40,7 @@ def multirobot_demo_binder(robot_one, robot_two, environment):
 if __name__ == '__main__':
     r1 = ROBOTS.PR2
     r2 = ROBOTS.TIAGO
-    demo = DEMOS.THREADED
+    demo = DEMOS.TRIPLE
     mode = WorldMode.DIRECT
 
     multirobot_demo(robot_one=r1, robot_two=r2, demo=demo, mode=mode)
