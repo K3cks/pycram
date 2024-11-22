@@ -4,8 +4,8 @@ from abc import ABC
 import rospy
 
 from pycram.multirobot.object_observer import ObjectObserver
-from pycram.robot_description import RobotDescriptionManager
-
+from pycram.robot_description import RobotDescriptionManager, RobotDescription
+from pycram.robot_descriptions import robot_description
 
 
 class RobotManager(ABC):
@@ -84,6 +84,13 @@ class RobotManager(ABC):
         robot = robot or RobotManager.active_robot
 
         return robot
+
+    @staticmethod
+    def get_robot_description(robot=None):
+        if robot is None:
+            return RobotDescription.current_robot_description
+
+        return RobotDescriptionManager().descriptions[robot.name]
 
     @staticmethod
     def multiple_robots_active():

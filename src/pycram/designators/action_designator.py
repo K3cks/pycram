@@ -674,12 +674,7 @@ class MoveTorsoActionPerformable(ActionAbstract):
     @with_tree
     def perform(self) -> None:
 
-
-        torso_joint = RobotDescription.current_robot_description.torso_joint
-
-        if self.used_robot is not None:
-            rdm = RobotDescriptionManager()
-            torso_joint = rdm.descriptions[self.used_robot.name].torso_joint
+        torso_joint = RobotManager.get_robot_description(self.used_robot).torso_joint
 
         MoveJointsMotion([torso_joint], [self.position], used_robot=self.used_robot).perform()
 
@@ -762,24 +757,14 @@ class ParkArmsActionPerformable(ActionAbstract):
         # add park left arm if wanted
         if self.arm in [Arms.LEFT, Arms.BOTH]:
             kwargs["left_arm_config"] = "park"
-            left_poses = RobotDescription.current_robot_description.get_arm_chain(Arms.LEFT).get_static_joint_states(
+            left_poses = RobotManager.get_robot_description(self.used_robot).get_arm_chain(Arms.LEFT).get_static_joint_states(
                 kwargs["left_arm_config"])
-
-            if self.used_robot is not None:
-                rdm = RobotDescriptionManager()
-                left_poses = (rdm.descriptions[self.used_robot.name].get_arm_chain(Arms.LEFT).
-                              get_static_joint_states(kwargs["left_arm_config"]))
 
         # add park right arm if wanted
         if self.arm in [Arms.RIGHT, Arms.BOTH]:
             kwargs["right_arm_config"] = "park"
-            right_poses = RobotDescription.current_robot_description.get_arm_chain(Arms.RIGHT).get_static_joint_states(
+            right_poses = RobotManager.get_robot_description(self.used_robot).get_arm_chain(Arms.RIGHT).get_static_joint_states(
                 kwargs["right_arm_config"])
-
-            if self.used_robot is not None:
-                rdm = RobotDescriptionManager()
-                right_poses = (rdm.descriptions[self.used_robot.name].get_arm_chain(Arms.RIGHT).
-                              get_static_joint_states(kwargs["right_arm_config"]))
 
         MoveArmJointsMotion(left_poses, right_poses, used_robot=self.used_robot).perform()
 
