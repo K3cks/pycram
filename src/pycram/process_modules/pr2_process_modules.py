@@ -119,8 +119,11 @@ class Pr2MoveArmJoints(ProcessModule):
     """
 
     def _execute(self, desig: MoveArmJointsMotion):
+        robot = desig.used_robot
 
-        robot = RobotManager.active_robot
+        if robot is None:
+            robot = RobotManager.active_robot
+
         if desig.right_arm_poses:
             robot.set_joint_positions(desig.right_arm_poses)
         if desig.left_arm_poses:

@@ -208,8 +208,10 @@ class MoveArmJointsMotion(BaseMotion):
     Target positions for the right arm joints
     """
 
+    used_robot: Optional[Object] = None
+
     def perform(self):
-        pm_manager = ProcessModuleManager.get_manager()
+        pm_manager = ProcessModuleManager.get_manager(robot=self.used_robot)
         return pm_manager.move_arm_joints().execute(self)
 
     def to_sql(self) -> ORMMotionDesignator:

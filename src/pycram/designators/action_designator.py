@@ -167,7 +167,7 @@ class ParkArmsAction(ActionDesignatorDescription):
     Park the arms of the robot.
     """
 
-    def __init__(self, arms: List[Arms], resolver=None,
+    def __init__(self, arms: List[Arms], used_robot: Optional[Object] = None, resolver=None,
                  ontology_concept_holders: Optional[List[Thing]] = None):
         """
         Moves the arms in the pre-defined parking position. Arms are taken from pycram.enum.Arms
@@ -178,6 +178,7 @@ class ParkArmsAction(ActionDesignatorDescription):
         """
         super().__init__(resolver, ontology_concept_holders)
         self.arms: List[Arms] = arms
+        self.used_robot = used_robot
 
         if self.soma:
             self.init_ontology_concepts({"parking_arms": self.soma.ParkingArms})
@@ -188,7 +189,7 @@ class ParkArmsAction(ActionDesignatorDescription):
 
         :return: A performable designator
         """
-        return ParkArmsActionPerformable(self.arms[0])
+        return ParkArmsActionPerformable(self.arms[0], used_robot=self.used_robot)
 
 
 class PickUpAction(ActionDesignatorDescription):
@@ -748,6 +749,8 @@ class ParkArmsActionPerformable(ActionAbstract):
     """
     orm_class: Type[ActionAbstract] = field(init=False, default=ORMParkArmsAction)
 
+    used_robot: Optional[Object] = None
+
     @with_tree
     def perform(self) -> None:
         # create the keyword arguments
@@ -761,13 +764,23 @@ class ParkArmsActionPerformable(ActionAbstract):
             left_poses = RobotDescription.current_robot_description.get_arm_chain(Arms.LEFT).get_static_joint_states(
                 kwargs["left_arm_config"])
 
+            if self.used_robot is not None:
+                rdm = RobotDescriptionManager()
+                left_poses = (rdm.descriptions[self.used_robot.name].get_arm_chain(Arms.LEFT).
+                              get_static_joint_states(kwargs["left_arm_config"]))
+
         # add park right arm if wanted
         if self.arm in [Arms.RIGHT, Arms.BOTH]:
             kwargs["right_arm_config"] = "park"
             right_poses = RobotDescription.current_robot_description.get_arm_chain(Arms.RIGHT).get_static_joint_states(
                 kwargs["right_arm_config"])
 
-        MoveArmJointsMotion(left_poses, right_poses).perform()
+            if self.used_robot is not None:
+                rdm = RobotDescriptionManager()
+                right_poses = (rdm.descriptions[self.used_robot.name].get_arm_chain(Arms.RIGHT).
+                              get_static_joint_states(kwargs["right_arm_config"]))
+
+        MoveArmJointsMotion(left_poses, right_poses, used_robot=self.used_robot).perform()
 
 
 @dataclass
