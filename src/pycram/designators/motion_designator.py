@@ -33,6 +33,9 @@ class MoveMotion(BaseMotion):
     """
 
     used_robot: Optional[Object] = None
+    """
+    Robot that should be moved, if it is not the currently active robot
+    """
 
     @with_tree
     def perform(self):
@@ -70,10 +73,11 @@ class MoveTCPMotion(BaseMotion):
     """
     If the gripper can collide with something
     """
+    used_robot: Optional[Object] = None
 
     @with_tree
     def perform(self):
-        pm_manager = ProcessModuleManager.get_manager()
+        pm_manager = ProcessModuleManager.get_manager(robot=self.used_robot)
         return pm_manager.move_tcp().execute(self)
 
     def to_sql(self) -> ORMMoveTCPMotion:
@@ -95,9 +99,11 @@ class LookingMotion(BaseMotion):
     """
     target: Pose
 
+    used_robot: Optional[Object] = None
+
     @with_tree
     def perform(self):
-        pm_manager = ProcessModuleManager.get_manager()
+        pm_manager = ProcessModuleManager.get_manager(robot=self.used_robot)
         return pm_manager.looking().execute(self)
 
     def to_sql(self) -> ORMLookingMotion:
@@ -131,9 +137,11 @@ class MoveGripperMotion(BaseMotion):
     If the gripper is allowed to collide with something
     """
 
+    used_robot: Optional[Object] = None
+
     @with_tree
     def perform(self):
-        pm_manager = ProcessModuleManager.get_manager()
+        pm_manager = ProcessModuleManager.get_manager(robot=self.used_robot)
         return pm_manager.move_gripper().execute(self)
 
     def to_sql(self) -> ORMMoveGripperMotion:
@@ -166,9 +174,11 @@ class DetectingMotion(BaseMotion):
     The state instructs our perception system to either start or stop the search for an object or human.
     Can also be used to describe the region or location where objects are perceived.
     """
+
+    used_robot: Optional[Object] = None
     @with_tree
     def perform(self):
-        pm_manager = ProcessModuleManager.get_manager()
+        pm_manager = ProcessModuleManager.get_manager(robot=self.used_robot)
         world_object = pm_manager.detecting().execute(self)
 
         if not world_object:
@@ -234,8 +244,10 @@ class WorldStateDetectingMotion(BaseMotion):
     Object type that should be detected
     """
 
+    used_robot: Optional[Object] = None
+
     def perform(self):
-        pm_manager = ProcessModuleManager.get_manager()
+        pm_manager = ProcessModuleManager.get_manager(robot=self.used_robot)
         return pm_manager.world_state_detecting().execute(self)
 
     def to_sql(self) -> ORMMotionDesignator:
@@ -288,9 +300,11 @@ class OpeningMotion(BaseMotion):
     Arm that should be used
     """
 
+    used_robot: Optional[Object] = None
+
     @with_tree
     def perform(self):
-        pm_manager = ProcessModuleManager.get_manager()
+        pm_manager = ProcessModuleManager.get_manager(robot=self.used_robot)
         return pm_manager.open().execute(self)
 
     def to_sql(self) -> ORMOpeningMotion:
@@ -320,9 +334,11 @@ class ClosingMotion(BaseMotion):
     Arm that should be used
     """
 
+    used_robot: Optional[Object] = None
+
     @with_tree
     def perform(self):
-        pm_manager = ProcessModuleManager.get_manager()
+        pm_manager = ProcessModuleManager.get_manager(robot=self.used_robot)
         return pm_manager.close().execute(self)
 
     def to_sql(self) -> ORMClosingMotion:
@@ -348,9 +364,11 @@ class TalkingMotion(BaseMotion):
     Talking Motion, let the robot say a sentence.
     """
 
+    used_robot: Optional[Object] = None
+
     @with_tree
     def perform(self):
-        pm_manager = ProcessModuleManager.get_manager()
+        pm_manager = ProcessModuleManager.get_manager(robot=self.used_robot)
         return pm_manager.talk().execute(self)
 
     def to_sql(self) -> ORMMotionDesignator:
