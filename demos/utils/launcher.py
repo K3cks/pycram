@@ -1,4 +1,6 @@
 import time
+from typing import List
+
 import roslaunch
 import rospy
 import rospkg
@@ -50,3 +52,10 @@ def launch_file(file, package='pycram', launch_folder='/launch/'):
 
     # Wait for ik server to launch
     time.sleep(2)
+
+
+def launch_all_robots(robots: List[ROBOTS]):
+    launched_robots = []
+    for robot in robots:
+        launched_robots.append(launch_robot(robot, use_namespace=True))
+    return launched_robots

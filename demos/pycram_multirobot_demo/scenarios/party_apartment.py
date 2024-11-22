@@ -1,3 +1,5 @@
+from typing import List
+
 import rospy
 
 from demos.pycram_multirobot_demo.setup.actions import actions
@@ -38,11 +40,11 @@ def robot_two_actions(first_torso_value, second_torso_value, robot, iterations=1
 
 
 
-def party_apartment(robot_one: ROBOTS, robot_two: ROBOTS, robot_three: ROBOTS, launch_robots=True):
+def party_apartment(robots: List[ROBOTS], launch_robots=True):
     if launch_robots:
-        first_robot_launch = launch_robot(robot_one, use_namespace=True)
-        second_robot_launch = launch_robot(robot_two, use_namespace=True)
-        third_robot_launch = launch_robot(robot_three, use_namespace=True)
+        launched_robots = []
+        for robot in robots:
+            launched_robots.append(launch_robot(robot, use_namespace=True))
 
     pose_pr2 = Pose([0, 1, 0])
     pose_tiago = Pose([0, 3, 0])

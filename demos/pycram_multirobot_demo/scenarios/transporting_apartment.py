@@ -1,8 +1,10 @@
+from typing import List
+
 import rospy
 
 from demos.pycram_multirobot_demo.setup.actions import actions
+from demos.utils.launcher import launch_all_robots
 from demos.utils.enums import ROBOTS, ENVIRONMENTS
-from demos.utils.launcher import launch_robot
 from demos.utils.object_spawner import set_environment, create_robot
 from pycram.datastructures.dataclasses import Color
 from pycram.datastructures.enums import ObjectType, Arms, Grasp
@@ -13,10 +15,12 @@ from pycram.process_module import simulated_robot
 from pycram.world_concepts.world_object import Object
 
 
-def transporting_apartment(robot_one: ROBOTS, robot_two: ROBOTS, launch_robots=True):
+def transporting_apartment(robots: List[ROBOTS], launch_robots=True):
     if launch_robots:
-        first_robot_launch = launch_robot(robot_one, use_namespace=True)
-        second_robot_launch = launch_robot(robot_two, use_namespace=True)
+        launched_robots = launch_all_robots(robots)
+
+    robot_one = robots[0]
+    robot_two = robots[1]
 
     pose_pr2 = Pose([1.5, 3, 0])
     pose_tiago = Pose([4, 3, 0])

@@ -1,3 +1,5 @@
+from typing import List
+
 from IPython.core.display_functions import display
 from ipywidgets import HTML
 
@@ -13,34 +15,37 @@ from pycram.ros.viz_marker_publisher import VizMarkerPublisher
 from pycram.worlds.bullet_world import BulletWorld
 
 
-def multirobot_demo(robot_one: ROBOTS = ROBOTS.PR2, robot_two: ROBOTS = ROBOTS.TIAGO, robot_three: ROBOTS = ROBOTS.ARMAR6,
-                    demo=DEMOS.APARTMENT, mode=WorldMode.GUI):
+def multirobot_demo(robots: List[ROBOTS], demo=DEMOS.APARTMENT, mode=WorldMode.GUI):
     world = BulletWorld(mode)
     viz = VizMarkerPublisher() if mode == WorldMode.DIRECT else None
 
     if demo == DEMOS.SIMPLE:
-        move_and_park(robot_one=robot_one, robot_two=robot_two)
+        move_and_park(robots=robots)
     elif demo == DEMOS.APARTMENT:
-        transporting_apartment(robot_one=robot_one, robot_two=robot_two)
+        transporting_apartment(robots=robots)
     elif demo == DEMOS.KITCHEN:
-        transporting_kitchen(robot_one=robot_one, robot_two=robot_two)
+        transporting_kitchen(robots=robots)
     elif demo == DEMOS.TRIPLE:
-        triple_robots(robot_one=robot_one, robot_two=robot_two, robot_three=robot_three)
+        triple_robots(robots=robots)
     elif demo == DEMOS.THREADED_TEST:
-        multithreaded_testing(robot_one=robot_one, robot_two=robot_two)
+        multithreaded_testing(robots=robots)
     elif demo == DEMOS.PARTY:
-        party_apartment(robot_one=robot_one, robot_two=robot_two, robot_three=robot_three)
+        party_apartment(robots=robots)
 
 
-def multirobot_demo_binder(robot_one, robot_two, environment):
+def multirobot_demo_binder(robots, environment):
     display(HTML('<img src="https://i.gifer.com/XVo6.gif" alt="Hourglass animation" width="50">'))
-    multirobot_demo(robot_one=robot_one, robot_two=robot_two, demo=environment, mode=WorldMode.GUI)
+    multirobot_demo(robots=robots, demo=environment, mode=WorldMode.GUI)
 
 
 if __name__ == '__main__':
-    r1 = ROBOTS.PR2
-    r2 = ROBOTS.TIAGO
+    robots = [
+        ROBOTS.PR2,
+        ROBOTS.TIAGO,
+        ROBOTS.ARMAR6
+    ]
+
     demo = DEMOS.TRIPLE
     mode = WorldMode.DIRECT
 
-    multirobot_demo(robot_one=r1, robot_two=r2, demo=demo, mode=mode)
+    multirobot_demo(robots=robots, demo=demo, mode=mode)

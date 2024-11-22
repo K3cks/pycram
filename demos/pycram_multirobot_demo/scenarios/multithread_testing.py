@@ -1,8 +1,10 @@
+from typing import List
+
 import rospy
 
 from demos.pycram_multirobot_demo.setup.actions import actions
 from demos.utils.enums import ROBOTS
-from demos.utils.launcher import launch_robot
+from demos.utils.launcher import launch_robot, launch_all_robots
 from demos.utils.object_spawner import create_robot
 from pycram.datastructures.pose import Pose
 from pycram.multirobot.multi_threaded_robots import MultiThreadedRobot
@@ -38,10 +40,12 @@ def robot_two_actions(first_torso_value, second_torso_value, robot, iterations=1
 
 
 
-def multithreaded_testing(robot_one: ROBOTS, robot_two: ROBOTS, launch_robots=True):
+def multithreaded_testing(robots: List[ROBOTS], launch_robots=True):
     if launch_robots:
-        first_robot_launch = launch_robot(robot_one, use_namespace=True)
-        second_robot_launch = launch_robot(robot_two, use_namespace=True)
+        launched_robots = launch_all_robots(robots=robots)
+
+    robot_one = robots[0]
+    robot_two = robots[1]
 
     pose_pr2 = Pose([0, 1, 0])
     pose_tiago = Pose([0, 3, 0])
