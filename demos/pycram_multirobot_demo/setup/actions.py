@@ -16,7 +16,7 @@ def set_active_robot(robot: ROBOTS):
         rospy.logerr(f'No topic named {robot_topic} found')
 
 
-def actions(park=False, torso=None, navigate=False, used_robot=None):
+def actions(park=False, torso=None, navigate=None, used_robot=None):
     if park:
         rospy.sleep(2)
         ParkArmsAction([Arms.BOTH], used_robot=used_robot).resolve().perform()
@@ -25,8 +25,8 @@ def actions(park=False, torso=None, navigate=False, used_robot=None):
         rospy.sleep(2)
         MoveTorsoAction([torso], used_robot=used_robot).resolve().perform()
 
-    if navigate:
+    if navigate is not None:
         rospy.sleep(2)
-        NavigateAction(target_locations=[Pose([1.7, 2, 0])]).resolve().perform()
+        NavigateAction(target_locations=[navigate]).resolve().perform()
 
     print("done")

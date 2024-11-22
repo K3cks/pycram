@@ -21,7 +21,8 @@ def move_and_park(robot_one: ROBOTS, robot_two: ROBOTS, launch_robots=True):
     rospy.sleep(3)
     print(f"{first_robot.name} actions")
     with simulated_robot(first_robot):
-        actions(navigate=True)
+        goal_pose = Pose([1, 1, 0])
+        actions(park=True, navigate=goal_pose)
 
     rospy.sleep(3)
     print(f"{second_robot.name} actions")
