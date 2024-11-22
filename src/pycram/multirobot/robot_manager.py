@@ -73,6 +73,19 @@ class RobotManager(ABC):
         rospy.logdebug(f'Setting active robot. Is now: {robot_name}')
 
     @staticmethod
+    def get_active_robot(robot=None):
+        """
+        Returns the active robot if the given variable is still None.
+        This differentiation is used for handling multiple robots in multithreaded Actions
+
+        :return: Active Robot
+        """
+
+        robot = robot or RobotManager.active_robot
+
+        return robot
+
+    @staticmethod
     def multiple_robots_active():
         if len(list(RobotManager.available_robots.keys())) > 1:
             RobotManager.object_observer = ObjectObserver()

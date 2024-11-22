@@ -36,10 +36,7 @@ class Pr2Navigation(ProcessModule):
     """
 
     def _execute(self, desig: MoveMotion):
-        robot = desig.used_robot
-
-        if robot is None:
-            robot = RobotManager.active_robot
+        robot = RobotManager.get_active_robot(desig.used_robot)
 
         robot.set_pose(desig.target)
 
@@ -123,10 +120,7 @@ class Pr2MoveArmJoints(ProcessModule):
     """
 
     def _execute(self, desig: MoveArmJointsMotion):
-        robot = desig.used_robot
-
-        if robot is None:
-            robot = RobotManager.active_robot
+        robot = RobotManager.get_active_robot(desig.used_robot)
 
         if desig.right_arm_poses:
             robot.set_joint_positions(desig.right_arm_poses)
@@ -140,10 +134,7 @@ class PR2MoveJoints(ProcessModule):
     """
 
     def _execute(self, desig: MoveJointsMotion):
-        robot = desig.used_robot
-
-        if robot is None:
-            robot = RobotManager.active_robot
+        robot = RobotManager.get_active_robot(desig.used_robot)
 
         robot.set_joint_positions(dict(zip(desig.names, desig.positions)))
 
