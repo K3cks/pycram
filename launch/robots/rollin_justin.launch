@@ -1,0 +1,15 @@
+<launch>
+<group ns="rollin_justin">
+  <arg name="use_knowrob" default="false"/>
+
+  <param name="robot_description"
+         textfile="$(find pycram)/resources/robots/rollin_justin.urdf"/>
+  <node pkg="kdl_ik_service" type="start_ros_server.py" name="rollin_justin_kdl" output="screen" />
+
+  <!-- Use Knowrob -->
+  <group if="$(eval use_knowrob)">
+      <include file="$(find knowrob)/launch/knowrob.launch"/>
+  </group>
+</group>
+
+</launch>

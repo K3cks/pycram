@@ -13,6 +13,7 @@ class ROBOTS(Enum):
     STRETCH = 'stretch'
     ARMAR6 = 'armar6'
     ICUB = 'iCub'
+    JUSTIN = 'rollin_justin'
 
 
 class ENVIRONMENTS(Enum):

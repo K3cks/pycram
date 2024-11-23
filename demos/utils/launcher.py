@@ -27,6 +27,8 @@ def launch_robot(robot: ROBOTS, use_namespace=False):
         executable = folder + 'turtlebot.launch'
     elif robot == ROBOTS.ICUB:
         executable = folder + 'icub.launch'
+    elif robot == ROBOTS.JUSTIN:
+        executable = folder + 'rollin_justin.launch'
     else:
         raise Exception(f'Robot {robot} is not supported')
 

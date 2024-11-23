@@ -46,6 +46,9 @@ def create_robot(robot: ROBOTS, pose=None):
     elif robot == ROBOTS.ICUB:
         return Object("iCub", ObjectType.ROBOT, "iCub.urdf", pose=pose)
 
+    elif robot == ROBOTS.JUSTIN:
+        return Object("rollin_justin", ObjectType.ROBOT, "rollin_justin.urdf", pose=pose)
+
     else:
         raise Exception("No known Robot defined for world")
 
