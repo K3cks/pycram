@@ -21,6 +21,14 @@ left_arm.add_static_joint_states("park", {'arm_left_1_joint': 0.27,
                                           'arm_left_6_joint': 1.2,
                                           'arm_left_7_joint': 0.5})
 
+left_arm.add_static_joint_states("party", {'arm_left_1_joint': 0.0,
+                                           'arm_left_2_joint': -1.4,
+                                           'arm_left_3_joint': 1.5,
+                                           'arm_left_4_joint': 0.0,
+                                           'arm_left_5_joint': -2.0,
+                                           'arm_left_6_joint': 0.0,
+                                           'arm_left_7_joint': 0.0})
+
 tiago_description.add_kinematic_chain_description(left_arm)
 
 ################################## Left Gripper ##################################
@@ -46,6 +54,14 @@ right_arm.add_static_joint_states("park", {'arm_right_1_joint': 0.27,
                                            'arm_right_5_joint': -2.0,
                                            'arm_right_6_joint': 1.2,
                                            'arm_right_7_joint': 0.5})
+
+right_arm.add_static_joint_states("party", {'arm_right_1_joint': 0.27,
+                                           'arm_right_2_joint': -1.3,
+                                           'arm_right_3_joint': 0.0,
+                                           'arm_right_4_joint': 0.0,
+                                           'arm_right_5_joint': 0.0,
+                                           'arm_right_6_joint': 0.0,
+                                           'arm_right_7_joint': 0.0})
 
 tiago_description.add_kinematic_chain_description(right_arm)
 

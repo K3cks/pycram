@@ -19,6 +19,17 @@ left_arm.add_static_joint_states("park", {'l_shoulder_pan_joint': 1.712,
                                           'l_forearm_roll_joint': 16.996,
                                           'l_wrist_flex_joint': -0.073,
                                           'l_wrist_roll_joint': 0.0})
+
+left_arm.add_static_joint_states("party", {'l_shoulder_pan_joint': 0.8,
+                                           'l_shoulder_lift_joint': -1.5,
+                                           'l_upper_arm_roll_joint': 0.0,
+                                           'l_elbow_flex_joint': 0.0,
+                                           'l_forearm_roll_joint': 16.996,
+                                           'l_wrist_flex_joint': -0.073,
+                                           'l_wrist_roll_joint': 0.0})
+
+
+
 pr2_description.add_kinematic_chain_description(left_arm)
 
 ################################## Left Gripper ##################################
@@ -42,6 +53,16 @@ right_arm.add_static_joint_states("park", {'r_shoulder_pan_joint': -1.712,
                                            'r_forearm_roll_joint': 1.766,
                                            'r_wrist_flex_joint': -0.07,
                                            'r_wrist_roll_joint': 0.051})
+
+right_arm.add_static_joint_states("party", {'r_shoulder_pan_joint': -0.8,
+                                            'r_shoulder_lift_joint': -1.4,
+                                            'r_upper_arm_roll_joint': 0.0,
+                                            'r_elbow_flex_joint': 0.0,
+                                            'r_forearm_roll_joint': 0.0,
+                                            'r_wrist_flex_joint': 0.0,
+                                            'r_wrist_roll_joint': 0.0})
+
+
 pr2_description.add_kinematic_chain_description(right_arm)
 
 ################################## Right Gripper ##################################

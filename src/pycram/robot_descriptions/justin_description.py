@@ -25,6 +25,18 @@ left_arm.add_static_joint_states("park", {"torso1_joint": 0,
                                           "left_arm6_joint": -1,
                                           "left_arm7_joint": 0})
 
+left_arm.add_static_joint_states("party", {"torso1_joint": 0,
+                                           "torso2_joint": 0,
+                                           "torso3_joint": 0.174533,
+                                           "torso4_joint": 0,
+                                           "left_arm1_joint": 0,
+                                           "left_arm2_joint": 0.0,
+                                           "left_arm3_joint": 0,
+                                           "left_arm4_joint": 0,
+                                           "left_arm5_joint": 0,
+                                           "left_arm6_joint": 0,
+                                           "left_arm7_joint": 0})
+
 justin_description.add_kinematic_chain_description(left_arm)
 
 ################################## Left Gripper ##################################
@@ -90,6 +102,18 @@ right_arm.add_static_joint_states("park", {"torso1_joint": 0,
                                            "right_arm5_joint": 0,
                                            "right_arm6_joint": -1,
                                            "right_arm7_joint": 0})
+
+right_arm.add_static_joint_states("party", {"torso1_joint": 0,
+                                            "torso2_joint": 0,
+                                            "torso3_joint": 0.174533,
+                                            "torso4_joint": 0,
+                                            "right_arm1_joint": 0.0,
+                                            "right_arm2_joint": 0,
+                                            "right_arm3_joint": 0.0,
+                                            "right_arm4_joint": 0.0,
+                                            "right_arm5_joint": 0.0,
+                                            "right_arm6_joint": 0.0,
+                                            "right_arm7_joint": 0})
 
 justin_description.add_kinematic_chain_description(right_arm)
 

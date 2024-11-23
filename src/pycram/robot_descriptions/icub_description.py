@@ -24,6 +24,17 @@ left_arm.add_static_joint_states("park", {"torso_roll": 0,
                                           "l_wrist_pitch": 0,
                                           "l_wrist_yaw": 0})
 
+left_arm.add_static_joint_states("party", {"torso_roll": 0,
+                                           "torso_pitch": 0,
+                                           "torso_yaw": 0,
+                                           "l_shoulder_pitch": 0,
+                                           "l_shoulder_roll": 3,
+                                           "l_shoulder_yaw": -2.0,
+                                           "l_elbow": 0,
+                                           "l_wrist_prosup": 1,
+                                           "l_wrist_pitch": 0,
+                                           "l_wrist_yaw": 0})
+
 icub_description.add_kinematic_chain_description(left_arm)
 
 ################################## Left Gripper ##################################
@@ -88,6 +99,17 @@ right_arm.add_static_joint_states("park", {"torso_roll": 0,
                                            "r_wrist_prosup": 0,
                                            "r_wrist_pitch": 0,
                                            "r_wrist_yaw": 0})
+
+right_arm.add_static_joint_states("party", {"torso_roll": 0,
+                                            "torso_pitch": 0,
+                                            "torso_yaw": 0,
+                                            "r_shoulder_pitch": 0,
+                                            "r_shoulder_roll": 3,
+                                            "r_shoulder_yaw": -2.0,
+                                            "r_elbow": 0,
+                                            "r_wrist_prosup": 1,
+                                            "r_wrist_pitch": 0,
+                                            "r_wrist_yaw": 0})
 
 icub_description.add_kinematic_chain_description(right_arm)
 
