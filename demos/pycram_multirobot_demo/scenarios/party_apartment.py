@@ -8,45 +8,51 @@ from demos.utils.enums import ROBOTS, ENVIRONMENTS
 from demos.utils.launcher import launch_robot, launch_all_robots
 from demos.utils.object_spawner import create_robot, set_environment
 from pycram.datastructures.pose import Pose
+from pycram.designators.action_designator import *
 from pycram.multirobot.multi_threaded_robots import MultiThreadedRobot
 from pycram.process_module import simulated_robot
 
-def robot_one_actions(first_torso_value, second_torso_value, robot, iterations=10):
-    with simulated_robot(robot):
-        i = 0
-        pose1 = Pose(position=[0, 1, 0])
-        pose2 = Pose(position=[1, 0, 0])
-        actions(park=True, used_robot=robot)
 
-        while i < iterations:
-            actions(navigate=pose1, used_robot=robot)
+def robot_one_actions(robot, iterations=1):
+    i = 0
+    delay = 2
+    while i < iterations:
+        with simulated_robot(robot):
+            ParkArmsAction([Arms.BOTH], used_robot=robot).resolve().perform()
+            rospy.sleep(delay)
+            PartyAction(arms=[Arms.BOTH], used_robot=robot).resolve().perform()
+            rospy.sleep(delay)
 
-            actions(torso=first_torso_value, used_robot=robot)
+def robot_two_actions(robot, iterations=1):
+    i = 0
+    delay = 2
+    while i < iterations:
+        with simulated_robot(robot):
+            ParkArmsAction([Arms.BOTH], used_robot=robot).resolve().perform()
+            rospy.sleep(delay)
+            PartyAction(arms=[Arms.BOTH], used_robot=robot).resolve().perform()
+            rospy.sleep(delay)
 
-            actions(torso=second_torso_value, used_robot=robot)
-
-            actions(navigate=pose2, used_robot=robot)
-            i += 1
-
-
-def robot_two_actions(first_torso_value, second_torso_value, robot, iterations=10):
-    with simulated_robot(robot):
-        i = 0
-
-        while i < iterations:
-            actions(torso=first_torso_value, used_robot=robot)
-
-            actions(torso=second_torso_value, used_robot=robot)
-            i += 1
-
-
-def robot_three_actions():
-    pass
+def robot_three_actions(robot, iterations=1):
+    i = 0
+    delay = 2
+    while i < iterations:
+        with simulated_robot(robot):
+            ParkArmsAction([Arms.BOTH], used_robot=robot).resolve().perform()
+            rospy.sleep(delay)
+            PartyAction(arms=[Arms.BOTH], used_robot=robot).resolve().perform()
+            rospy.sleep(delay)
 
 
-def robot_four_actions():
-    pass
-
+def robot_four_actions(robot, iterations=1):
+    i = 0
+    delay = 2
+    while i < iterations:
+        with simulated_robot(robot):
+            ParkArmsAction([Arms.BOTH], used_robot=robot).resolve().perform()
+            rospy.sleep(delay)
+            PartyAction(arms=[Arms.BOTH], used_robot=robot).resolve().perform()
+            rospy.sleep(delay)
 
 def party_apartment(robots: List[ROBOTS], launch_robots=True):
     if launch_robots:
@@ -62,7 +68,7 @@ def party_apartment(robots: List[ROBOTS], launch_robots=True):
     pose_justin = Pose([3, 3, 0])
     pose_icub = Pose([3, 0, 0])
 
-    current_environment = set_environment(ENVIRONMENTS.APARTMENT_SMALL)
+    # current_environment = set_environment(ENVIRONMENTS.APARTMENT_SMALL)
 
     first_robot = create_robot(robot_one, pose=pose_pr2)
     second_robot = create_robot(robot_two, pose=pose_tiago)
@@ -70,12 +76,12 @@ def party_apartment(robots: List[ROBOTS], launch_robots=True):
     fourth_robot = create_robot(robot_four, pose=pose_icub)
     rospy.sleep(3)
 
-    robot_one_actions(0.25, 0.0, first_robot)
-
     mtr = MultiThreadedRobot()
-    process = mtr.start_process(robot_one_actions, (0.25, 0.0, first_robot, 5))
-    process2 = mtr.start_process(robot_two_actions, (0.25, 0.0, second_robot, 10))
-    process3 = mtr.start_process(robot_three_actions, (0.25, 0.0, third_robot, 10))
-    process4 = mtr.start_process(robot_four_actions, (0.25, 0.0, fourth_robot, 10))
+    process = mtr.start_process(robot_one_actions, (first_robot, 3))
+    process2 = mtr.start_process(robot_two_actions, (second_robot, 5))
+    process3 = mtr.start_process(robot_three_actions, (third_robot, 7))
+    process4 = mtr.start_process(robot_four_actions, (fourth_robot, 9))
     mtr.end(process)
     mtr.end(process2)
+    mtr.end(process3)
+    mtr.end(process4)
