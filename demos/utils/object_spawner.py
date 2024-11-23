@@ -43,6 +43,9 @@ def create_robot(robot: ROBOTS, pose=None):
     elif robot == ROBOTS.STRETCH:
         return Object("stretch", ObjectType.ROBOT, "stretch.urdf", pose=pose)
 
+    elif robot == ROBOTS.ICUB:
+        return Object("iCub", ObjectType.ROBOT, "iCub.urdf", pose=pose)
+
     else:
         raise Exception("No known Robot defined for world")
 

@@ -11,8 +11,8 @@ class ROBOTS(Enum):
     TURTLE = 'turtlebot'
     DONBOT = 'donbot'
     STRETCH = 'stretch'
-
     ARMAR6 = 'armar6'
+    ICUB = 'iCub'
 
 
 class ENVIRONMENTS(Enum):
