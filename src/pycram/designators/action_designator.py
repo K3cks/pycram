@@ -192,6 +192,36 @@ class ParkArmsAction(ActionDesignatorDescription):
         return ParkArmsActionPerformable(self.arms[0], used_robot=self.used_robot)
 
 
+class PartyAction(ActionDesignatorDescription):
+    """
+    Park the arms of the robot.
+    """
+
+    def __init__(self, arms: List[Arms], used_robot: Optional[Object] = None, resolver=None,
+                 ontology_concept_holders: Optional[List[Thing]] = None):
+        """
+        Moves the arms in the pre-defined parking position. Arms are taken from pycram.enum.Arms
+
+        :param arms: A list of possible arms, that could be used
+        :param resolver: An optional specialized_designators that returns a performable designator from the designator description
+        :param ontology_concept_holders: A list of ontology concepts that the action is categorized as or associated with
+        """
+        super().__init__(resolver, ontology_concept_holders)
+        self.arms: List[Arms] = arms
+        self.used_robot = used_robot
+
+        if self.soma:
+            self.init_ontology_concepts({"party": self.soma.ParkingArms})
+
+    def ground(self) -> PartyActionPerformable:
+        """
+        Default specialized_designators that returns a performable designator with the first element of the list of possible arms
+
+        :return: A performable designator
+        """
+        return PartyActionPerformable(self.arms[0], used_robot=self.used_robot)
+
+
 class PickUpAction(ActionDesignatorDescription):
     """
     Designator to let the robot pick up an object.
@@ -1277,6 +1307,42 @@ class MoveAndPickUpPerformable(ActionAbstract):
         NavigateActionPerformable(self.standing_position).perform()
         FaceAtPerformable(self.object_designator.pose).perform()
         PickUpActionPerformable(self.object_designator, self.arm, self.grasp, used_robot=self.used_robot).perform()
+
+
+@dataclass
+class PartyActionPerformable(ActionAbstract):
+    """
+    Park the arms of the robot.
+    """
+
+    arm: Arms
+    """
+    Entry from the enum for which arm should be parked
+    """
+    orm_class: Type[ActionAbstract] = field(init=False, default=ORMParkArmsAction)
+
+    used_robot: Optional[Object] = None
+
+    @with_tree
+    def perform(self) -> None:
+        # create the keyword arguments
+        kwargs = dict()
+        left_poses = None
+        right_poses = None
+
+        # add park left arm if wanted
+        if self.arm in [Arms.LEFT, Arms.BOTH]:
+            kwargs["left_arm_config"] = "party"
+            left_poses = RobotManager.get_robot_description(self.used_robot).get_arm_chain(Arms.LEFT).get_static_joint_states(
+                kwargs["left_arm_config"])
+
+        # add park right arm if wanted
+        if self.arm in [Arms.RIGHT, Arms.BOTH]:
+            kwargs["right_arm_config"] = "party"
+            right_poses = RobotManager.get_robot_description(self.used_robot).get_arm_chain(Arms.RIGHT).get_static_joint_states(
+                kwargs["right_arm_config"])
+
+        MoveArmJointsMotion(left_poses, right_poses, used_robot=self.used_robot).perform()
 
 
 @dataclass
