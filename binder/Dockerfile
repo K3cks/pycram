@@ -11,6 +11,10 @@ RUN pip install --requirement ${PYCRAM_WS}/src/pycram/binder/requirements.txt --
 
 COPY --chown=${NB_USER}:users binder/me ${PYCRAM_WS}/src/me
 
+# Clone navigation stack
+WORKDIR ${PYCRAM_WS}/src/
+RUN git clone https://github.com/ros-planning/navigation.git
+
 USER root
 RUN apt-get update
 
