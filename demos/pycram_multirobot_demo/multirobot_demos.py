@@ -42,10 +42,11 @@ if __name__ == '__main__':
     robots = [
         ROBOTS.PR2,
         ROBOTS.TIAGO,
-        ROBOTS.ARMAR6
+        ROBOTS.JUSTIN,
+        ROBOTS.ICUB
     ]
 
-    demo = DEMOS.TRIPLE
+    demo = DEMOS.PARTY
     mode = WorldMode.DIRECT
 
     multirobot_demo(robots=robots, demo=demo, mode=mode)
