@@ -28,6 +28,8 @@ RUN pip install service_identity
 # Jupyter Config
 COPY --chown=${NB_USER}:users binder/jupyter-config.json /opt/conda/share/jupyter/lab/settings/overrides.json
 
+ENV PYTHONPATH="${PYTHONPATH}:/home/jovyan/workspace/ros/src/pycram"
+
 WORKDIR ${PYCRAM_WS}/src/pycram
 RUN git config --global --add safe.directory ${PWD}
 COPY --chown=${NB_USER}:users binder/entrypoint.sh /
