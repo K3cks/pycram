@@ -41,7 +41,11 @@ RUN rosdep update \
 USER ${NB_USER}
 RUN catkin build
 
+# Missing packages
 RUN pip install service_identity
+RUN pip install pydub
+RUN pip install owl2ready
+RUN pip install gtts
 
 # Jupyter Config
 COPY --chown=${NB_USER}:users binder/jupyter-config.json /opt/conda/share/jupyter/lab/settings/overrides.json
