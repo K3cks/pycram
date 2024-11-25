@@ -7,9 +7,9 @@
   "viewerOptions": {
     "camera": {
       "position": {
-        "x": 8.8,
-        "y": 4.5,
-        "z": 2.7
+        "x": 10,
+        "y": 6,
+        "z": 3.7
       }
     },
     "cameraControls": {
