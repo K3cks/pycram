@@ -15,27 +15,27 @@ from pycram.ros.viz_marker_publisher import VizMarkerPublisher
 from pycram.worlds.bullet_world import BulletWorld
 
 
-def multirobot_demo(robots: List[ROBOTS], demo=DEMOS.APARTMENT, mode=WorldMode.GUI):
+def multirobot_demo(robots: List[ROBOTS], demo=DEMOS.APARTMENT, mode=WorldMode.GUI, launch_robots=False):
     world = BulletWorld(mode)
     viz = VizMarkerPublisher() if mode == WorldMode.DIRECT else None
 
     if demo == DEMOS.SIMPLE:
-        move_and_park(robots=robots)
+        move_and_park(robots=robots, launch_robots=launch_robots)
     elif demo == DEMOS.APARTMENT:
-        transporting_apartment(robots=robots)
+        transporting_apartment(robots=robots, launch_robots=launch_robots)
     elif demo == DEMOS.KITCHEN:
-        transporting_kitchen(robots=robots)
+        transporting_kitchen(robots=robots, launch_robots=launch_robots)
     elif demo == DEMOS.TRIPLE:
-        triple_robots(robots=robots)
+        triple_robots(robots=robots, launch_robots=launch_robots)
     elif demo == DEMOS.THREADED_TEST:
-        multithreaded_testing(robots=robots)
+        multithreaded_testing(robots=robots, launch_robots=launch_robots)
     elif demo == DEMOS.PARTY:
-        party_apartment(robots=robots)
+        party_apartment(robots=robots, launch_robots=launch_robots)
 
 
-def multirobot_demo_binder(robots, environment):
+def multirobot_demo_binder(robots, environment, mode=WorldMode.DIRECT, launch_robots=False):
     display(HTML('<img src="https://i.gifer.com/XVo6.gif" alt="Hourglass animation" width="50">'))
-    multirobot_demo(robots=robots, demo=environment, mode=WorldMode.GUI)
+    multirobot_demo(robots=robots, demo=environment, mode=mode, launch_robots=launch_robots)
 
 
 if __name__ == '__main__':
