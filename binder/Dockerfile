@@ -15,6 +15,14 @@ COPY --chown=${NB_USER}:users binder/me ${PYCRAM_WS}/src/me
 WORKDIR ${PYCRAM_WS}/src/
 RUN git clone https://github.com/ros-planning/navigation.git
 
+WORKDIR ${PYCRAM_WS}/src/iai_robots/
+RUN git remote add luca https://github.com/LucaKro/iai_robots.git
+RUN git fetch luca
+RUN git checkout luca/armar6
+
+WORKDIR ${PYCRAM_WS}/src/
+RUN git clone https://github.com/code-iai/iai_tiago.git --recursive 
+
 USER root
 
 RUN apt-get update
