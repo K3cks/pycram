@@ -38,6 +38,19 @@ def multirobot_demo_binder(robots, environment, mode=WorldMode.DIRECT, launch_ro
     multirobot_demo(robots=robots, demo=environment, mode=mode, launch_robots=launch_robots)
 
 
+def start_party_demo():
+    robots = [
+        ROBOTS.PR2,
+        ROBOTS.TIAGO,
+        ROBOTS.JUSTIN,
+        ROBOTS.ICUB
+    ]
+    demo = DEMOS.PARTY
+    mode = WorldMode.DIRECT
+
+    multirobot_demo_binder(robots, environment=demo, mode=mode, launch_robots=False)
+
+
 if __name__ == '__main__':
     robots = [
         ROBOTS.PR2,
