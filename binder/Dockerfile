@@ -52,7 +52,7 @@ RUN catkin build
 # Missing packages
 RUN pip install service_identity
 RUN pip install pydub
-RUN pip install owl2ready
+RUN pip install owlready2
 RUN pip install gtts
 
 # Jupyter Config
