@@ -32,6 +32,8 @@ class MultiRobotTestCase(unittest.TestCase):
         cls.robot_tiago = Object("tiago_dual", ObjectType.ROBOT, "tiago_dual" + cls.extension, pose=pose_tiago)
 
         cls.milk = Object("milk", ObjectType.MILK, "milk.stl", pose=Pose([0.5, 3, 1.02], orientation=[0, 0, 1, 0]))
+        cls.table = Object("table", ObjectType.MILK, "bowl.stl", pose=Pose([1.5, 4, 1.02], orientation=[0, 0, 1, 0]))
+
 
         ProcessModule.execution_delay = False
         cls.viz_marker_publisher = VizMarkerPublisher()
@@ -94,7 +96,7 @@ class TestMultiRobot(MultiRobotTestCase):
 
         self.assertTrue(RobotManager.is_object_blocked(self.milk))
 
-        RobotManager.release_object(obj=self.milk)
+        RobotManager.release_object(obj=self.milk, robot_name=self.robot_pr2.name)
 
     def test_object_released(self):
         """
@@ -103,6 +105,16 @@ class TestMultiRobot(MultiRobotTestCase):
 
         RobotManager.block_object(obj=self.milk, robot_name=self.robot_pr2.name)
 
-        RobotManager.release_object(obj=self.milk)
+        RobotManager.release_object(obj=self.milk, robot_name=self.robot_pr2.name)
 
         self.assertTrue(not RobotManager.is_object_blocked(self.milk))
+
+    def test_object_collaboration(self):
+        RobotManager.block_object(obj=self.table, robot_name=self.robot_pr2.name, amount_of_collaborating_robots=2)
+        RobotManager.block_object(obj=self.table, robot_name=self.robot_tiago.name)
+
+        self.assertTrue(RobotManager.is_object_blocked(self.table))
+
+
+
+

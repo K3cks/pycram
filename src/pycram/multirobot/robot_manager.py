@@ -99,28 +99,36 @@ class RobotManager(ABC):
         return False
 
     @staticmethod
-    def block_object(obj, robot_name):
+    def block_object(obj, robot_name, amount_of_collaborating_robots: int = 1):
         """
         Block a given object, if is not blocked already
         """
-        if RobotManager.object_observer is not None:
-            if RobotManager.is_object_blocked(obj):
-                rospy.logerr(f"Object {obj.name} is in use by another robot!")
-                return
 
-            rospy.loginfo(f'Blocking object "{obj.name}" for robot {robot_name}')
-            RobotManager.object_observer.block_object(obj, robot_name)
+        if RobotManager.object_observer is None:
+            return
+
+        if not RobotManager.object_observer.is_object_in_use(obj):
+            RobotManager.object_observer.add_blocker(obj, amount_of_collaborating_robots)
+
+        if RobotManager.is_object_blocked(obj):
+            rospy.logerr(f"Object {obj.name} is in use by another robot!")
+            return
+
+        block_info = f'Blocking object "{obj.name}" for robot {robot_name}'
+        if amount_of_collaborating_robots >= 1:
+            block_info = f'Assigned {robot_name} to collaboration task for object "{obj.name}"'
+
+        rospy.loginfo(block_info)
+
+        RobotManager.object_observer.assign_robot(obj, robot_name)
 
     @staticmethod
-    def release_object(obj):
-        if RobotManager.object_observer is not None:
-            if RobotManager.is_object_blocked(obj):
-                blocked_object = RobotManager.object_observer.blocked_objects[obj.id]
-                rospy.loginfo(f'Releasing object "{obj.name}" from robot {blocked_object["robot"]}')
-                RobotManager.object_observer.release_object(obj)
-                return
+    def release_object(obj, robot_name):
+        if RobotManager.object_observer is None:
+            return
 
-            rospy.logerr(f"Object {obj.name} is not in use by a robot!")
+        rospy.loginfo(f'Releasing object "{obj.name}" from robot {robot_name}')
+        RobotManager.object_observer.release_robot(obj, robot_name)
 
 
     @staticmethod
