@@ -99,7 +99,7 @@ class Object(WorldEntity):
             rdm = RobotDescriptionManager()
             rdm.load_description(self.description.name)
             World.robot = self
-            RobotManager.add_robot(self.name, self)
+            RobotManager.add_robot(self)
             RobotManager.multiple_robots_active()
 
     @property

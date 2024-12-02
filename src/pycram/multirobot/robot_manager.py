@@ -1,11 +1,9 @@
-import logging
 from abc import ABC
 
 import rospy
 
 from pycram.multirobot.object_observer import ObjectObserver
 from pycram.robot_description import RobotDescriptionManager, RobotDescription
-from pycram.robot_descriptions import robot_description
 
 
 class RobotManager(ABC):
@@ -53,11 +51,11 @@ class RobotManager(ABC):
         pass
 
     @staticmethod
-    def add_robot(robot_name, robot):
+    def add_robot(robot):
         """
         Add another robot to the list of available robots
         """
-        RobotManager.available_robots[robot_name] = robot
+        RobotManager.available_robots[robot.name] = robot
 
     @staticmethod
     def set_active_robot(robot_name=None):
