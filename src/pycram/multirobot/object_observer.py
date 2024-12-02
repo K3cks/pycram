@@ -1,7 +1,4 @@
-import threading
-import time
-
-import rospy
+from typing import Dict
 
 
 class ObjectObserver:
@@ -9,7 +6,7 @@ class ObjectObserver:
     Class to observe the state of objects that are currently in use and shouldn't be accessed by another robot
     """
 
-    blocked_objects = {}
+    blocked_objects: Dict[int, Dict[str, str]] = {}
     """
     Variable that stores the array of objects
     """
@@ -19,32 +16,32 @@ class ObjectObserver:
         Currently does nothing
         """
 
-    def block_object(self, object_desig, robot_name):
+    def block_object(self, obj, robot_name: str):
         """
         Add an object to the observer list
         """
 
-        obj = {"robot": robot_name,
-               "name": object_desig.name}
+        object_details = {"robot": robot_name,
+                          "name": obj.name}
 
-        self.blocked_objects[object_desig.id] = obj
+        self.blocked_objects[obj.id] = object_details
 
-    def release_object(self, object_desig):
+    def release_object(self, obj):
         """
         Remove an object from the observer list
         """
 
-        self.blocked_objects.pop(object_desig.id)
+        self.blocked_objects.pop(obj.id)
 
-    def is_object_blocked(self, object_desig) -> bool:
+    def is_object_blocked(self, obj) -> bool:
         """
         State if a given object is blocked,
 
-        :param object_desig: designator of given object
+        :param obj: designator of given object
         """
         all_ids = list(self.blocked_objects.keys())
 
-        if object_desig.id in all_ids:
+        if obj.id in all_ids:
             return True
 
         return False

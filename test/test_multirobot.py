@@ -90,19 +90,19 @@ class TestMultiRobot(MultiRobotTestCase):
         Test that an Action which tries to use a blocked object will be canceled
         """
 
-        RobotManager.block_object(object_desig=self.milk, robot_name=self.robot_pr2.name)
+        RobotManager.block_object(obj=self.milk, robot_name=self.robot_pr2.name)
 
         self.assertTrue(RobotManager.is_object_blocked(self.milk))
 
-        RobotManager.release_object(object_desig=self.milk)
+        RobotManager.release_object(obj=self.milk)
 
     def test_object_released(self):
         """
         Test that a blocked object is correctly released when an action is done
         """
 
-        RobotManager.block_object(object_desig=self.milk, robot_name=self.robot_pr2.name)
+        RobotManager.block_object(obj=self.milk, robot_name=self.robot_pr2.name)
 
-        RobotManager.release_object(object_desig=self.milk)
+        RobotManager.release_object(obj=self.milk)
 
         self.assertTrue(not RobotManager.is_object_blocked(self.milk))
