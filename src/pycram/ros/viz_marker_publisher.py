@@ -21,7 +21,7 @@ class VizMarkerPublisher:
     Publishes an Array of visualization marker which represent the situation in the World
     """
 
-    def __init__(self, topic_name="/pycram/viz_marker", interval=0.1):
+    def __init__(self, topic_name="/pycram/viz_marker", interval=0.1, map_frame="pycram/map", ignore_robots=True):
         """
         The Publisher creates an Array of Visualization marker with a Marker for each link of each Object in the
         World. This Array is published with a rate of interval.
@@ -31,6 +31,8 @@ class VizMarkerPublisher:
         """
         self.topic_name = topic_name
         self.interval = interval
+        self.map_frame = map_frame
+        self.ignore_robots = ignore_robots
 
         self.pub = rospy.Publisher(self.topic_name, MarkerArray, queue_size=10)
 
@@ -62,7 +64,9 @@ class VizMarkerPublisher:
         obj_coloring = False
         marker_array = MarkerArray()
         for obj in self.main_world.objects:
-            if obj.obj_type == ObjectType.ROBOT or obj.name == "floor" and not obj.name == "rollin_justin" and not obj.name == "Armar6":
+            ignore_robot = obj.obj_type == ObjectType.ROBOT and self.ignore_robots
+
+            if ignore_robot or obj.name == "floor" and not obj.name == "rollin_justin" and not obj.name == "Armar6":
                 continue
             if obj.obj_type == ObjectType.GENERIC_OBJECT:
                 obj_coloring = True
@@ -71,7 +75,7 @@ class VizMarkerPublisher:
                 if not geom:
                     continue
                 msg = Marker()
-                msg.header.frame_id = "pycram/map"
+                msg.header.frame_id = self.map_frame
                 msg.ns = obj.name
                 msg.id = obj.link_name_to_id[link]
                 msg.type = Marker.MESH_RESOURCE
