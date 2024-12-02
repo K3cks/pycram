@@ -6,6 +6,7 @@ from demos.pycram_multirobot_demo.setup.actions import actions
 from demos.utils.enums import ROBOTS
 from demos.utils.launcher import launch_robot, launch_all_robots
 from demos.utils.object_spawner import create_robot
+from pycram.datastructures.enums import Arms
 from pycram.datastructures.pose import Pose
 from pycram.multirobot.multi_threaded_robots import MultiThreadedRobot
 from pycram.process_module import simulated_robot
@@ -15,7 +16,7 @@ def robot_one_actions(first_torso_value, second_torso_value, robot, iterations=1
         i = 0
         pose1 = Pose(position=[0, 1, 0])
         pose2 = Pose(position=[1, 0, 0])
-        actions(park=True, used_robot=robot)
+        actions(park_arms=Arms.BOTH, used_robot=robot)
 
         while i < iterations:
             actions(navigate=pose1, used_robot=robot)

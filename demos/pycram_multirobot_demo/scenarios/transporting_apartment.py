@@ -45,7 +45,7 @@ def transporting_apartment(robots: List[ROBOTS], launch_robots=True):
     # Actions
     print(f"{first_robot.name} actions")
     with simulated_robot(first_robot):
-        actions(park=True)
+        actions(park_arms=Arms.BOTH)
 
         NavigateAction(target_locations=[Pose([1.3, 3, 0], orientation=[0, 0, 1, 0])]).resolve().perform()
 
@@ -53,18 +53,18 @@ def transporting_apartment(robots: List[ROBOTS], launch_robots=True):
                      arms=[Arms.LEFT],
                      grasps=[Grasp.FRONT]).resolve().perform()
 
-        actions(park=True)
+        actions(park_arms=Arms.BOTH)
 
         NavigateAction(target_locations=[Pose([1.9, 3, 0], orientation=[0, 0, 0, 1])]).resolve().perform()
 
         PlaceAction(milk_BO, [Pose([2.75, 3, 1.02], orientation=[0, 0, 0, 1])], [Arms.LEFT]).resolve().perform()
 
-        actions(park=True)
+        actions(park_arms=Arms.BOTH)
 
     rospy.sleep(3)
     print(f"{second_robot.name} actions")
     with simulated_robot(second_robot):
-        actions(park=True)
+        actions(park_arms=Arms.BOTH)
 
         # NavigateAction(target_locations=[Pose([3.5, 3, 0], orientation=[0, 0, 1, 0])]).resolve().perform()
         NavigateAction(target_locations=[Pose([3.6, 3, 0], [0, 0, 1, 0])]).resolve().perform()

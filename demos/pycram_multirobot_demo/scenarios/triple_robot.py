@@ -6,6 +6,7 @@ from demos.pycram_multirobot_demo.setup.actions import actions
 from demos.utils.enums import ROBOTS
 from demos.utils.launcher import launch_robot, launch_all_robots
 from demos.utils.object_spawner import create_robot
+from pycram.datastructures.enums import Arms
 from pycram.datastructures.pose import Pose
 from pycram.process_module import simulated_robot
 
@@ -29,15 +30,15 @@ def triple_robots(robots: List[ROBOTS], launch_robots=True):
     rospy.sleep(3)
     print(f"{first_robot.name} actions")
     with simulated_robot(first_robot):
-        actions(park=True)
+        actions(park_arms=Arms.BOTH)
 
     rospy.sleep(3)
     print(f"{second_robot.name} actions")
     with simulated_robot(second_robot):
-        actions(park=True, torso=0.25)
+        actions(park_arms=Arms.BOTH, torso=0.25)
 
     with simulated_robot(third_robot):
-        actions(park=True, torso=0.25)
+        actions(park_arms=Arms.BOTH, torso=0.25)
 
     with simulated_robot(first_robot):
         actions(torso=0.25)

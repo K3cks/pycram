@@ -18,7 +18,7 @@ from pycram.worlds.bullet_world import BulletWorld
 
 def pr2_pickup_object(robot, object):
     with simulated_robot(robot):
-        actions(park=True)
+        actions(park_arms=Arms.BOTH)
 
         NavigateAction(target_locations=[Pose([1.3, 3, 0], orientation=[0, 0, 1, 0])]).resolve().perform()
 
@@ -26,11 +26,11 @@ def pr2_pickup_object(robot, object):
                      arms=[Arms.LEFT],
                      grasps=[Grasp.FRONT]).resolve().perform()
 
-        actions(park=True)
+        actions(park_arms=Arms.BOTH)
 
         NavigateAction(target_locations=[Pose([1.9, 3, 0], orientation=[0, 0, 0, 1])]).resolve().perform()
 
-        actions(park=True)
+        actions(park_arms=Arms.BOTH)
 
 
 def block_object(object_desig, robot):
@@ -43,7 +43,7 @@ def release_object(object_desig):
 
 def tiago_pickup_object(robot):
     with simulated_robot(robot):
-        actions(park=True)
+        actions(park_arms=Arms.BOTH)
 
         # NavigateAction(target_locations=[Pose([3.5, 3, 0], orientation=[0, 0, 1, 0])]).resolve().perform()
         NavigateAction(target_locations=[Pose([3.6, 3, 0], [0, 0, 1, 0])]).resolve().perform()

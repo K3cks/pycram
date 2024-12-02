@@ -64,7 +64,7 @@ def main():
         NavigateAction(target_locations=[navigation_pose]).resolve().perform()
 
     with real_robot(hsrb):
-        actions(park=True)
+        actions(park_arms=Arms.LEFT)
 
 
 if __name__ == '__main__':

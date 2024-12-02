@@ -6,6 +6,7 @@ from demos.pycram_multirobot_demo.setup.actions import actions
 from demos.utils.launcher import launch_all_robots
 from demos.utils.enums import ROBOTS
 from demos.utils.object_spawner import create_robot
+from pycram.datastructures.enums import Arms
 from pycram.datastructures.pose import Pose
 from pycram.process_module import simulated_robot
 
@@ -26,12 +27,12 @@ def move_and_park(robots: List[ROBOTS], launch_robots=True):
     print(f"{first_robot.name} actions")
     with simulated_robot(first_robot):
         goal_pose = Pose([1, 1, 0])
-        actions(park=True, navigate=goal_pose)
+        actions(park_arms=Arms.BOTH, navigate=goal_pose)
 
     rospy.sleep(3)
     print(f"{second_robot.name} actions")
     with simulated_robot(second_robot):
-        actions(park=True, torso=0.25)
+        actions(park_arms=Arms.BOTH, torso=0.25)
 
     with simulated_robot(first_robot):
         actions(torso=0.25)
