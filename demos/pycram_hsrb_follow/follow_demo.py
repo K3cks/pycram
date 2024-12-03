@@ -12,6 +12,11 @@ from pycram.worlds.bullet_world import BulletWorld
 
 
 def start_demo():
+    """
+    Starts the "follow" demo in a binder conform version.
+    Original demo from Jule Schulz relies on Keyboard input which cannot be natively used in a binder environment.
+    """
+
     output = widgets.Output()
 
     environment_param = 'apartment'

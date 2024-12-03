@@ -1,17 +1,19 @@
 from copy import deepcopy
 
 import rospy
+from ipywidgets import Output
 
 from pycram.datastructures.pose import Pose
 from pycram.designators.action_designator import NavigateAction
 from pycram.process_module import simulated_robot
 from pycram.utils import axis_angle_to_quaternion
+from pycram.world_concepts.world_object import Object
 
 
 class VariableHandler:
     """
-    Singleton class to manage multiple robot descriptions. Stores all robot descriptions and loads a robot description
-    according to the name of the loaded robot.
+    Singleton class to manage robot and human objects for the binder version of demo "follow".
+    Stores all relevant variables in this class to manage later on.
     """
     _instance = None
 
@@ -45,15 +47,15 @@ class VariableHandler:
 
         self._initialized = True
 
-    def set_robot(self, robot):
+    def set_robot(self, robot: Object):
         self.robot = robot
         self.original_positions["robot"] = self.robot.get_pose()
 
-    def set_human(self, human):
+    def set_human(self, human: Object):
         self.human = human
         self.original_positions["human"] = self.human.get_pose()
 
-    def set_output(self, output):
+    def set_output(self, output: Output):
         self.output = output
 
     def collision_check(self, target: Pose, possible_collision: Pose):
@@ -99,6 +101,14 @@ class VariableHandler:
 
         return new_pose
 
+    def move_human_and_robot(self, new_human_pose: Pose, new_robot_pose: Pose, robot_pose_back: Pose):
+        self.human.set_pose(new_human_pose)
+
+        with simulated_robot:
+            NavigateAction([new_robot_pose]).resolve().perform()
+
+        self.way_back.append(robot_pose_back)
+
     def move_forward(self):
         if self.stop_demo:
             return
@@ -114,14 +124,7 @@ class VariableHandler:
 
         # if no collision is caused, move human
         if not self.collision_check(new_human_pose, old_robot_pose):
-            # new_robot_pose = self.calc_modified_pose(old_robot_pose, robot_pose_modifier)
-
-            self.human.set_pose(new_human_pose)
-
-            with simulated_robot:
-                NavigateAction([new_robot_pose]).resolve().perform()
-
-            self.way_back.append(robot_pose_back)
+            self.move_human_and_robot(new_human_pose, new_robot_pose, robot_pose_back)
 
     def move_right(self):
         if self.stop_demo:
@@ -138,14 +141,7 @@ class VariableHandler:
 
         # if no collision is caused, move human
         if not self.collision_check(new_human_pose, old_robot_pose):
-            # new_robot_pose = self.calc_modified_pose(old_robot_pose, robot_pose_modifier)
-
-            self.human.set_pose(new_human_pose)
-
-            with simulated_robot:
-                NavigateAction([new_robot_pose]).resolve().perform()
-
-            self.way_back.append(robot_pose_back)
+            self.move_human_and_robot(new_human_pose, new_robot_pose, robot_pose_back)
 
     def move_left(self):
         if self.stop_demo:
@@ -162,14 +158,7 @@ class VariableHandler:
 
         # if no collision is caused, move human
         if not self.collision_check(new_human_pose, old_robot_pose):
-            #new_robot_pose = self.calc_modified_pose(old_robot_pose, robot_pose_modifier)
-
-            self.human.set_pose(new_human_pose)
-
-            with simulated_robot:
-                NavigateAction([new_robot_pose]).resolve().perform()
-
-            self.way_back.append(robot_pose_back)
+            self.move_human_and_robot(new_human_pose, new_robot_pose, robot_pose_back)
 
     def move_back(self):
         if self.stop_demo:
@@ -186,14 +175,7 @@ class VariableHandler:
 
         # if no collision is caused, move human
         if not self.collision_check(new_human_pose, old_robot_pose):
-            # new_robot_pose = self.calc_modified_pose(old_robot_pose, robot_pose_modifier)
-
-            self.human.set_pose(new_human_pose)
-
-            with simulated_robot:
-                NavigateAction([new_robot_pose]).resolve().perform()
-
-            self.way_back.append(robot_pose_back)
+            self.move_human_and_robot(new_human_pose, new_robot_pose, robot_pose_back)
 
     def go_back(self):
         if self.stop_demo:
@@ -201,8 +183,6 @@ class VariableHandler:
 
         with simulated_robot:
             for pose in reversed(self.way_back):
-                #new_pose = self.calc_modified_pose(self.robot.get_pose(), pose)
-
                 NavigateAction([pose]).resolve().perform()
                 rospy.sleep(0.3)
         self.stop_demo = True
@@ -218,4 +198,3 @@ class VariableHandler:
             NavigateAction([pose]).resolve().perform()
 
         self.stop_demo = False
-
