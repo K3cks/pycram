@@ -44,7 +44,6 @@ class VariableHandler:
         self.original_positions = {}
 
         self._initialized = True
-        print("initialized")
 
     def set_robot(self, robot):
         self.robot = robot
