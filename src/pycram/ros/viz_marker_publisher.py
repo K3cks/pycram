@@ -14,6 +14,7 @@ from ..datastructures.enums import AxisIdentifier, ObjectType
 from ..datastructures.pose import Pose, Transform
 from ..designator import ObjectDesignatorDescription
 from ..datastructures.world import World
+from ..world_concepts.world_object import Object
 
 
 class VizMarkerPublisher:
@@ -21,7 +22,7 @@ class VizMarkerPublisher:
     Publishes an Array of visualization marker which represent the situation in the World
     """
 
-    def __init__(self, topic_name="/pycram/viz_marker", interval=0.1):
+    def __init__(self, topic_name="/pycram/viz_marker", interval=0.1, spawn_floor=True):
         """
         The Publisher creates an Array of Visualization marker with a Marker for each link of each Object in the
         World. This Array is published with a rate of interval.
@@ -31,6 +32,9 @@ class VizMarkerPublisher:
         """
         self.topic_name = topic_name
         self.interval = interval
+
+        if spawn_floor:
+            _ = Object("plane_colored", ObjectType.ENVIRONMENT, f"plane_colored.urdf")
 
         self.pub = rospy.Publisher(self.topic_name, MarkerArray, queue_size=10)
 
