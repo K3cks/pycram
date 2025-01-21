@@ -26,52 +26,72 @@ from pycram.datastructures.dataclasses import Color
 
 # apartment = Object("apartment", ObjectType.ENVIRONMENT, f"apartment-small{extension}")
 def transporting_demo(apartment_name, robot_name):
-
     robot_desig = BelieveObject(names=[robot_name])
     apartment_desig = BelieveObject(names=[apartment_name])
     robot = robot_desig.resolve().world_object
     apartment = apartment_desig.resolve().world_object
 
-    if robot.name == "iCub":
-        milk = Object("milk", ObjectType.MILK, "milk.stl", pose=Pose([4.7, 4.6, 0.8]),
+    if apartment_name == "kitchen":
+        milk = Object("milk", ObjectType.MILK, "milk.stl", pose=Pose([1.4, 0.2, 0.96]),
                       color=Color(1, 0, 0, 1))
-        milk_target_pose = Pose([4.8, 3.45, 0.8])
+        milk_target_pose = Pose([-0.78, 0.6, 0.94], [0, 0, 0, -11])
 
         cereal = Object("cereal", ObjectType.BREAKFAST_CEREAL, "breakfast_cereal.stl",
-                        pose=Pose([4.65, 4.75, 0.8]), color=Color(0, 1, 0, 1))
-        cereal_target_pose = Pose([4.85, 3.3, 0.8], [0, 0, 1, 1])
+                        pose=Pose([1.4, 0.65, 0.96]), color=Color(0, 1, 0, 1))
+        cereal_target_pose = Pose([-0.79, 0.9, 0.96], [0, 0, 0, -11])
 
-        bowl = Object("bowl", ObjectType.BOWL, "bowl.stl", pose=Pose([4.7, 4, 0.75], [0, 0, -1, 1]),
+        bowl = Object("bowl", ObjectType.BOWL, "bowl.stl", pose=Pose([1.4, 0, 0.9], [0, 0, -1, 1]),
                       color=Color(1, 1, 0, 1))
-        bowl_target_pose = Pose([5, 3.3, 0.75], [0, 0, 0, 1])
+        bowl_target_pose = Pose([-0.79, 1.3, 0.89], [0, 0, 0, -11])
 
-        spoon = Object("spoon", ObjectType.SPOON, "spoon.stl", pose=Pose([4.7, 4.2, 0.75], [0, 0, -1, 1]),
-                       color=Color(0, 0, 1, 1))
-        spoon_target_pose = Pose([5.2, 3.3, 0.8], [0, 0, 1, 1])
+        # spoon = Object("spoon", ObjectType.SPOON, "spoon.stl", pose=Pose([1.4, 0.75, 0.75], [0, 0, -1, 1]),
+        #                color=Color(0, 0, 1, 1))
+        # spoon_target_pose = Pose([5.2, 3.3, 0.8], [0, 0, 1, 1])
 
-        pick_pose = Pose([4.7, 4.5, 0.8])
-        nav_pose = Pose([4, 4.5, 0])
-    else:
-        milk = Object("milk", ObjectType.MILK, "milk.stl", pose=Pose([2.5, 2, 1.02], [0, 0, 1, 1]),
-                      color=Color(1, 0, 0, 1))
-        milk_target_pose = Pose([4.8, 3.55, 0.8])
+        pick_pose = Pose([1.4, 0.2, 0.96])
+        nav_pose = Pose([0.7, 0, 0])
 
-        cereal = Object("cereal", ObjectType.BREAKFAST_CEREAL, "breakfast_cereal.stl",
-                        pose=Pose([2.5, 2.5, 1.05]), color=Color(0, 1, 0, 1))
-        cereal_target_pose = Pose([5.2, 3.4, 0.8], [0, 0, 1, 1])
+    elif apartment_name == "apartment":
+        if robot.name == "iCub":
+            milk = Object("milk", ObjectType.MILK, "milk.stl", pose=Pose([4.7, 4.6, 0.8]),
+                          color=Color(1, 0, 0, 1))
+            milk_target_pose = Pose([4.8, 3.45, 0.8])
 
-        bowl = Object("bowl", ObjectType.BOWL, "bowl.stl", pose=Pose([2.4, 2.2, 0.98]),
-                      color=Color(1, 1, 0, 1))
-        bowl_target_pose = Pose([5, 3.3, 0.8], [0, 0, 1, 1])
+            cereal = Object("cereal", ObjectType.BREAKFAST_CEREAL, "breakfast_cereal.stl",
+                            pose=Pose([4.65, 4.75, 0.8]), color=Color(0, 1, 0, 1))
+            cereal_target_pose = Pose([4.85, 3.3, 0.8], [0, 0, 1, 1])
 
-        spoon = Object("spoon", ObjectType.SPOON, "spoon.stl", pose=Pose([2.5, 2.2, 0.85]),
-                       color=Color(0, 0, 1, 1))
-        spoon_target_pose = Pose([4.85, 3.3, 0.8], [0, 0, 1, 1])
+            bowl = Object("bowl", ObjectType.BOWL, "bowl.stl", pose=Pose([4.7, 4, 0.75], [0, 0, -1, 1]),
+                          color=Color(1, 1, 0, 1))
+            bowl_target_pose = Pose([5, 3.3, 0.75], [0, 0, 0, 1])
 
-        apartment.attach(spoon, 'cabinet10_drawer_top')
+            spoon = Object("spoon", ObjectType.SPOON, "spoon.stl", pose=Pose([4.7, 4.2, 0.75], [0, 0, -1, 1]),
+                           color=Color(0, 0, 1, 1))
+            spoon_target_pose = Pose([5.2, 3.3, 0.8], [0, 0, 1, 1])
 
-        pick_pose = Pose([2.7, 2.15, 1])
-        nav_pose = Pose([1.5, 2, 0])
+            pick_pose = Pose([4.7, 4.5, 0.8])
+            nav_pose = Pose([4, 4.5, 0])
+        else:
+            milk = Object("milk", ObjectType.MILK, "milk.stl", pose=Pose([2.5, 2, 1.02], [0, 0, 1, 1]),
+                          color=Color(1, 0, 0, 1))
+            milk_target_pose = Pose([4.8, 3.55, 0.8])
+
+            cereal = Object("cereal", ObjectType.BREAKFAST_CEREAL, "breakfast_cereal.stl",
+                            pose=Pose([2.5, 2.5, 1.05]), color=Color(0, 1, 0, 1))
+            cereal_target_pose = Pose([5.2, 3.4, 0.8], [0, 0, 1, 1])
+
+            bowl = Object("bowl", ObjectType.BOWL, "bowl.stl", pose=Pose([2.4, 2.2, 0.98]),
+                          color=Color(1, 1, 0, 1))
+            bowl_target_pose = Pose([5, 3.3, 0.8], [0, 0, 1, 1])
+
+            spoon = Object("spoon", ObjectType.SPOON, "spoon.stl", pose=Pose([2.5, 2.2, 0.85]),
+                           color=Color(0, 0, 1, 1))
+            spoon_target_pose = Pose([4.85, 3.3, 0.8], [0, 0, 1, 1])
+
+            apartment.attach(spoon, 'cabinet10_drawer_top')
+
+            pick_pose = Pose([2.7, 2.15, 1])
+            nav_pose = Pose([1.5, 2, 0])
 
     @with_simulated_robot
     def move_and_detect(obj_type):
@@ -96,7 +116,7 @@ def transporting_demo(apartment_name, robot_name):
         cereal_desig = move_and_detect(ObjectType.BREAKFAST_CEREAL)
 
         if robot.name == "tiago_dual":
-            #cereal_target_pose = Pose([5.25, 3.4, 0.85], [0, 0, 0, -1])
+            # cereal_target_pose = Pose([5.25, 3.4, 0.85], [0, 0, 0, -1])
             TransportAction(cereal_desig, [Arms.LEFT], [cereal_target_pose]).resolve().perform()
         else:
             TransportAction(cereal_desig, [Arms.LEFT], [cereal_target_pose]).resolve().perform()
@@ -186,4 +206,3 @@ def transporting_demo(apartment_name, robot_name):
                 PlaceAction(spoon_desig, [spoon_target_pose], [pickup_arm]).resolve().perform()
 
                 ParkArmsAction([Arms.BOTH]).resolve().perform()
-

@@ -63,17 +63,17 @@ def start_demo():
 
 def start_demo_local():
     # get params
-    environment_param = 'apartment'
-    robot_param = 'stretch'
+    environment_param = 'kitchen'
+    robot_param = 'pr2'
     task_param = 'transporting'
 
     robot_name = get_robot_name(robot_param)
 
     extension = ObjectDescription.get_file_extension()
     world = BulletWorld(WorldMode.DIRECT)
-    VizMarkerPublisher(interval=0.4)
+    VizMarkerPublisher(interval=0.4, spawn_floor=False)
     VizMarkerRobotPublisher(interval=0.2)
-    robot = Object(robot_name, ObjectType.ROBOT, f"robots/fetch.urdf", pose=Pose([1, 2, 0]))
+    robot = Object(robot_name, ObjectType.ROBOT, f"robots/{robot_param}.urdf", pose=Pose([1, 2, 0]))
     apartment = Object(environment_param, ObjectType.ENVIRONMENT, f"{environment_param}{extension}")
 
 
@@ -82,7 +82,7 @@ def start_demo_local():
     extension = ObjectDescription.get_file_extension()
 
 
-def demo_selecting(apartment, robot, task_param):
+def demo_selecting(envi, robot, task_param):
     # if task_param == "navigate":
     #     navigate_simple_example()
     if task_param == "follow":
@@ -91,9 +91,9 @@ def demo_selecting(apartment, robot, task_param):
         specialized_task = None
         # specialized_task = rospy.get_param('/nbparam_specialized_task')
         if specialized_task == "clean":
-            cleanup_demo(apartment, robot)
+            cleanup_demo(envi, robot)
         else:
-            transporting_demo(apartment, robot)
+            transporting_demo(envi, robot)
     elif task_param in ["cutting", "mixing", "pouring"]:
         # object_target = rospy.get_param('/nbparam_object')
         # object_tool = rospy.get_param('/nbparam_object_tool')
