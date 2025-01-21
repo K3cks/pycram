@@ -34,7 +34,7 @@ class VizMarkerPublisher:
         self.interval = interval
 
         if spawn_floor:
-            _ = Object("plane_colored", ObjectType.ENVIRONMENT, f"plane_colored.urdf")
+            _ = Object("plane_colored", ObjectType.ENVIRONMENT, f"objects/plane_colored.urdf")
 
         self.pub = rospy.Publisher(self.topic_name, MarkerArray, queue_size=10)
 
@@ -68,7 +68,7 @@ class VizMarkerPublisher:
         for obj in self.main_world.objects:
             if obj.name == "floor" or obj.obj_type == ObjectType.ROBOT:
                 continue
-            if obj.obj_type == ObjectType.GENERIC_OBJECT:
+            if obj.obj_type == ObjectType.GENERIC_OBJECT or obj.name == "plane_colored":
                 obj_coloring = True
             for link in obj.link_name_to_id.keys():
                 geom = obj.get_link_geometry(link)
@@ -101,7 +101,8 @@ class VizMarkerPublisher:
                         "kiwi": (0.76, 0.88, 0.52, 1),
                         "avocado": (0.0, 0.5, 0.0, 1),
                         "bowl": (1, 0, 0, 1),
-                        "jeroen_cup": (0, 0, 1, 1)
+                        "jeroen_cup": (0, 0, 1, 1),
+                        "plane_colored": (0.76 ,0.60, 0.42, 1),
                     }
                     color = colors.get(obj.name, [1, 1, 1, 1])
 

@@ -70,13 +70,12 @@ def start_demo_local():
     robot_name = get_robot_name(robot_param)
 
     extension = ObjectDescription.get_file_extension()
-
     world = BulletWorld(WorldMode.DIRECT)
     VizMarkerPublisher(interval=0.4)
     VizMarkerRobotPublisher(interval=0.2)
-    robot = Object(robot_name, ObjectType.ROBOT, f"{robot_name}{extension}", pose=Pose([1, 2, 0]))
-    apartment = Object(environment_param, ObjectType.ENVIRONMENT, f"{environment_param}-small{extension}")
-    TFBroadcaster()
+    robot = Object(robot_name, ObjectType.ROBOT, f"robots/fetch.urdf", pose=Pose([1, 2, 0]))
+    apartment = Object(environment_param, ObjectType.ENVIRONMENT, f"{environment_param}{extension}")
+
 
 
     demo_selecting(environment_param, robot_name, task_param)
@@ -110,4 +109,4 @@ def demo_selecting(apartment, robot, task_param):
         specialized_task = rospy.get_param('/nbparam_specialized_task')
         start_generalized_demo(task_param, object_tool, object_target, specialized_task)
 
-# start_demo_local()
+start_demo_local()
