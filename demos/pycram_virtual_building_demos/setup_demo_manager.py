@@ -109,4 +109,4 @@ def demo_selecting(envi, robot, task_param):
         specialized_task = rospy.get_param('/nbparam_specialized_task')
         start_generalized_demo(task_param, object_tool, object_target, specialized_task)
 
-start_demo_local()
+#start_demo_local()
