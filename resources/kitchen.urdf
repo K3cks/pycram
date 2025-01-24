@@ -166,14 +166,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/racks/SinkArea.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/racks/SinkArea.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/racks/SinkArea.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/racks/SinkArea.dae"/>
       </geometry>
     </collision>
   </link>
@@ -214,14 +214,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/misc/Sink.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/misc/Sink.dae"/>
       </geometry>
       <material name="sink"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/misc/Sink.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/misc/Sink.dae"/>
       </geometry>
     </collision>
   </link>
@@ -239,14 +239,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Panel_60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Panel_60.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Panel_60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Panel_60.dae"/>
       </geometry>
     </collision>
   </link>
@@ -264,14 +264,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_58.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_58.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_58.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_58.dae"/>
       </geometry>
     </collision>
   </link>
@@ -284,14 +284,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.dae"/>
       </geometry>
       <material name="cabinet_handles"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.dae"/>
       </geometry>
     </collision>
   </link>
@@ -321,14 +321,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_80_14.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_80_14.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_80_14.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_80_14.dae"/>
       </geometry>
     </collision>
   </link>
@@ -341,14 +341,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle80.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle80.dae"/>
       </geometry>
       <material name="cabinet_handles"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle80.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle80.dae"/>
       </geometry>
     </collision>
   </link>
@@ -378,14 +378,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_80_29.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_80_29.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_80_29.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_80_29.dae"/>
       </geometry>
     </collision>
   </link>
@@ -398,14 +398,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle80.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle80.dae"/>
       </geometry>
       <material name="cabinet_handles"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle80.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle80.dae"/>
       </geometry>
     </collision>
   </link>
@@ -435,14 +435,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_80_29.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_80_29.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_80_29.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_80_29.dae"/>
       </geometry>
     </collision>
   </link>
@@ -455,14 +455,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle80.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle80.dae"/>
       </geometry>
       <material name="cabinet_handles"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle80.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle80.dae"/>
       </geometry>
     </collision>
   </link>
@@ -492,14 +492,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/misc/DishWasher.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/misc/DishWasher.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/misc/DishWasher.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/misc/DishWasher.dae"/>
       </geometry>
     </collision>
   </link>
@@ -512,14 +512,14 @@
     <visual>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/misc/DishWasherDoor.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/misc/DishWasherDoor.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/misc/DishWasherDoor.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/misc/DishWasherDoor.dae"/>
       </geometry>
     </collision>
   </link>
@@ -532,14 +532,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.dae"/>
       </geometry>
       <material name="cabinet_handles"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.dae"/>
       </geometry>
     </collision>
   </link>
@@ -582,14 +582,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/racks/OvenArea.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/racks/OvenArea.dae"/>
       </geometry>
       <material name="cabinet_surface"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/racks/OvenArea.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/racks/OvenArea.dae"/>
       </geometry>
     </collision>
   </link>
@@ -613,14 +613,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/oven/OvenMain.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/oven/OvenMain.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/oven/OvenMain.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/oven/OvenMain.dae"/>
       </geometry>
     </collision>
   </link>
@@ -633,14 +633,14 @@
     <visual>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/oven/OvenDoor.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/oven/OvenDoor.dae"/>
       </geometry>
       <material name="oven_silver"/>
     </visual>
     <collision>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/oven/OvenDoor.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/oven/OvenDoor.dae"/>
       </geometry>
     </collision>
   </link>
@@ -653,14 +653,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.dae"/>
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.dae"/>
       </geometry>
     </collision>
   </link>
@@ -673,14 +673,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/oven/OvenPanel.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/oven/OvenPanel.dae"/>
       </geometry>
       <material name="oven_silver"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/oven/OvenPanel.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/oven/OvenPanel.dae"/>
       </geometry>
     </collision>
   </link>
@@ -724,14 +724,14 @@
     <visual>
       <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/oven/Knob.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/oven/Knob.dae"/>
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
       <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/oven/Knob.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/oven/Knob.dae"/>
       </geometry>
     </collision>
   </link>
@@ -751,14 +751,14 @@
     <visual>
       <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/oven/Knob.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/oven/Knob.dae"/>
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
       <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/oven/Knob.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/oven/Knob.dae"/>
       </geometry>
     </collision>
   </link>
@@ -778,14 +778,14 @@
     <visual>
       <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/oven/Knob.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/oven/Knob.dae"/>
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
       <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/oven/Knob.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/oven/Knob.dae"/>
       </geometry>
     </collision>
   </link>
@@ -805,14 +805,14 @@
     <visual>
       <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/oven/Knob.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/oven/Knob.dae"/>
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
       <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/oven/Knob.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/oven/Knob.dae"/>
       </geometry>
     </collision>
   </link>
@@ -832,14 +832,14 @@
     <visual>
       <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/oven/Knob.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/oven/Knob.dae"/>
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
       <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/oven/Knob.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/oven/Knob.dae"/>
       </geometry>
     </collision>
   </link>
@@ -859,14 +859,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_14.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_14.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_14.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_14.dae"/>
       </geometry>
     </collision>
   </link>
@@ -879,14 +879,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.dae"/>
       </geometry>
       <material name="cabinet_handles"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.dae"/>
       </geometry>
     </collision>
   </link>
@@ -916,14 +916,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_58.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_58.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_58.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_58.dae"/>
       </geometry>
     </collision>
   </link>
@@ -936,14 +936,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.dae"/>
       </geometry>
       <material name="cabinet_handles"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.dae"/>
       </geometry>
     </collision>
   </link>
@@ -974,14 +974,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/VDrawer.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/VDrawer.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/VDrawer.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/VDrawer.dae"/>
       </geometry>
     </collision>
   </link>
@@ -994,14 +994,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/VHandle130.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/VHandle130.dae"/>
       </geometry>
       <material name="cabinet_handles"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/VHandle130.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/VHandle130.dae"/>
       </geometry>
     </collision>
   </link>
@@ -1454,13 +1454,13 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/VDrawer.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/VDrawer.dae"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/VDrawer.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/VDrawer.dae"/>
       </geometry>
     </collision>
   </link>
@@ -1474,14 +1474,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/VHandle130.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/VHandle130.dae"/>
       </geometry>
       <material name="cabinet_handles"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/VHandle130.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/VHandle130.dae"/>
       </geometry>
     </collision>
   </link>
@@ -1521,14 +1521,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/racks/IslandArea.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/racks/IslandArea.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/racks/IslandArea.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/racks/IslandArea.dae"/>
       </geometry>
     </collision>
   </link>
@@ -1569,14 +1569,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/misc/Stove.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/misc/Stove.dae"/>
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/misc/Stove.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/misc/Stove.dae"/>
       </geometry>
     </collision>
   </link>
@@ -1594,14 +1594,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Panel_60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Panel_60.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Panel_60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Panel_60.dae"/>
       </geometry>
     </collision>
   </link>
@@ -1619,14 +1619,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_29.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_29.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_29.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_29.dae"/>
       </geometry>
     </collision>
   </link>
@@ -1639,14 +1639,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.dae"/>
       </geometry>
       <material name="cabinet_handles"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.dae"/>
       </geometry>
     </collision>
   </link>
@@ -1676,14 +1676,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_29.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_29.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_29.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_29.dae"/>
       </geometry>
     </collision>
   </link>
@@ -1696,14 +1696,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.dae"/>
       </geometry>
       <material name="cabinet_handles"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.dae"/>
       </geometry>
     </collision>
   </link>
@@ -1733,14 +1733,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Panel_100.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Panel_100.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Panel_100.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Panel_100.dae"/>
       </geometry>
     </collision>
   </link>
@@ -1758,14 +1758,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_100_29.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_100_29.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_100_29.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_100_29.dae"/>
       </geometry>
     </collision>
   </link>
@@ -1778,14 +1778,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle100.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle100.dae"/>
       </geometry>
       <material name="cabinet_handles"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle100.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle100.dae"/>
       </geometry>
     </collision>
   </link>
@@ -1815,14 +1815,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_100_29.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_100_29.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_100_29.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_100_29.dae"/>
       </geometry>
     </collision>
   </link>
@@ -1835,14 +1835,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle100.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle100.dae"/>
       </geometry>
       <material name="cabinet_handles"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle100.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle100.dae"/>
       </geometry>
     </collision>
   </link>
@@ -1872,14 +1872,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Panel_60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Panel_60.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Panel_60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Panel_60.dae"/>
       </geometry>
     </collision>
   </link>
@@ -1897,14 +1897,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_29.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_29.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_29.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_29.dae"/>
       </geometry>
     </collision>
   </link>
@@ -1917,14 +1917,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.dae"/>
       </geometry>
       <material name="cabinet_handles"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.dae"/>
       </geometry>
     </collision>
   </link>
@@ -1954,14 +1954,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_29.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_29.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_29.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_29.dae"/>
       </geometry>
     </collision>
   </link>
@@ -1974,14 +1974,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.dae"/>
       </geometry>
       <material name="cabinet_handles"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.dae"/>
       </geometry>
     </collision>
   </link>
@@ -2018,14 +2018,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0.01"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/racks/FridgeArea.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/racks/FridgeArea.dae"/>
       </geometry>
       <material name="cabinet_surface"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0.01"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/racks/FridgeArea.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/racks/FridgeArea.dae"/>
         <!--mesh filename="package://iai_kitchen/meshes/collision/kitchen_fridge.stl"/-->
       </geometry>
     </collision>
@@ -2049,14 +2049,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_29.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_29.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_29.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/drawers/Drawer_60_29.dae"/>
       </geometry>
     </collision>
   </link>
@@ -2069,14 +2069,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.dae"/>
       </geometry>
       <material name="cabinet_handles"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/Handle60.dae"/>
       </geometry>
     </collision>
   </link>
@@ -2106,14 +2106,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/misc/Fridge.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/misc/Fridge.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/misc/Fridge.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/misc/Fridge.dae"/>
       </geometry>
     </collision>
   </link>
@@ -2126,14 +2126,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/misc/FridgeDoor.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/misc/FridgeDoor.dae"/>
       </geometry>
       <material name="almost_white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/misc/FridgeDoor.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/misc/FridgeDoor.dae"/>
       </geometry>
     </collision>
   </link>
@@ -2146,14 +2146,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/VHandle90.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/VHandle90.dae"/>
       </geometry>
       <material name="cabinet_handles"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/handles/VHandle90.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/handles/VHandle90.dae"/>
       </geometry>
     </collision>
   </link>
@@ -2187,7 +2187,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://iai_kitchen/meshes/misc/big_table_1.obj"/>
+        <mesh filename="package://iai_kitchen/meshes/misc/big_table_1.dae"/>
       </geometry>
     </visual>
     <collision>
